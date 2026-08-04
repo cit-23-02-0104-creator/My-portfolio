@@ -17,20 +17,6 @@
                         primary: '#06b6d4', // Cyan
                         secondary: '#6366f1', // Indigo
                         accent: '#a855f7', // Purple
-                    },
-                    animation: {
-                        'float': 'float 4s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
-                        }
                     }
                 }
             }
@@ -43,8 +29,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Typed.js for Typewriter Effect -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <!-- Particles.js CDN -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
         .glass-card {
@@ -68,19 +52,42 @@
         .glow-effect {
             box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
         }
-        .hero-glow {
-            box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.3);
-        }
+
+        /* Ambient Glow & Grid Overlay Styles */
         .bg-grid-pattern {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-            background-size: 28px 28px;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+        .light .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        }
+        .ambient-glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            pointer-events: none;
+            animation: floatGlow 8s ease-in-out infinite alternate;
+        }
+        @keyframes floatGlow {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(30px, -20px) scale(1.1); }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 light:bg-slate-50 light:text-slate-900 font-sans transition-colors duration-300 relative selection:bg-cyan-500 selection:text-white overflow-x-hidden">
+<body class="bg-slate-950 text-slate-100 light:bg-slate-50 light:text-slate-900 font-sans transition-colors duration-300 relative selection:bg-cyan-500 selection:text-white">
+
+    <!-- Grid Overlay Background -->
+    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-70"></div>
+
+    <!-- Interactive Particle Network Background -->
+    <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
     <!-- Floating Social Icons (Left Side) -->
-    <div class="fixed left-5 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4 p-3 glass-card rounded-full shadow-2xl border border-slate-800">
+    <div class="fixed left-5 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4 p-3 glass-card rounded-full shadow-2xl">
         <a href="https://github.com/" target="_blank" title="GitHub" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-cyan-500 hover:text-slate-950 transition-all text-slate-300 hover:scale-110">
             <i class="fab fa-github text-xl"></i>
         </a>
@@ -96,7 +103,7 @@
     </div>
 
     <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full z-50 glass-card transition-all duration-300 border-b border-slate-800/80">
+    <nav class="fixed top-0 w-full z-50 glass-card transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#home" class="text-2xl font-black tracking-wider gradient-text flex items-center gap-2">
                 <i class="fas fa-code text-cyan-400"></i> JAYANI.
@@ -137,57 +144,41 @@
     </nav>
 
     <!-- 🏠 Home / Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-28 pb-16 px-6 relative overflow-hidden bg-grid-pattern">
-        
-        <!-- Interactive Particle Background -->
-        <div id="particles-js" class="absolute inset-0 z-0 opacity-35 pointer-events-none"></div>
+    <section id="home" class="min-h-screen flex items-center justify-center pt-28 pb-16 px-6 relative overflow-hidden z-10">
+        <!-- Ambient Glow Effects -->
+        <div class="ambient-glow-orb top-10 left-10 w-96 h-96 bg-cyan-500/20 -z-10"></div>
+        <div class="ambient-glow-orb bottom-10 right-10 w-[500px] h-[500px] bg-purple-600/20 -z-10" style="animation-delay: -3s;"></div>
+        <div class="ambient-glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 -z-10" style="animation-delay: -5s;"></div>
 
-        <!-- Ambient Glow Orbs -->
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl -z-10 animate-pulse-glow"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-indigo-500/15 rounded-full blur-3xl -z-10 animate-pulse-glow" style="animation-delay: 1.5s;"></div>
-
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-            
-            <!-- Left Column: Hero Text -->
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div data-aos="fade-right" class="space-y-6 text-center md:text-left">
-                
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-semibold tracking-wide">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-cyan-500/40 text-cyan-400 text-sm font-medium shadow-lg shadow-cyan-500/10 backdrop-blur-md">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
                     Undergraduate in Software Engineering
                 </div>
-
                 <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
                     Hi, I'm <br>
-                    <span class="gradient-text drop-shadow-md">JAYANI SAMARAKOON</span>
+                    <span class="gradient-text">JAYANI SAMARAKOON</span>
                 </h1>
-
-                <p class="text-lg sm:text-xl text-slate-300 font-light">
-                    SLTC Research University | <span id="typed-text" class="text-cyan-400 font-bold border-b border-cyan-400/50 pb-0.5"></span>
+                <p class="text-xl text-slate-400 font-light">
+                    SLTC Research University | <span id="typed-text" class="text-cyan-400 font-semibold"></span>
                 </p>
-
-                <p class="text-slate-400 max-w-lg leading-relaxed text-sm sm:text-base font-normal mx-auto md:mx-0">
+                <p class="text-slate-400 max-w-lg leading-relaxed text-sm sm:text-base">
                     Passionate about building AI-powered applications, machine learning pipelines, natural language processing solutions, and modern full-stack web applications to solve real-world problems.
                 </p>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
-                    <a href="#contact" class="px-8 py-3.5 rounded-xl gradient-bg text-slate-950 font-extrabold shadow-lg shadow-cyan-500/20 hover:scale-105 transition duration-300 hover:shadow-cyan-500/40 flex items-center gap-2">
+                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
+                    <a href="#contact" class="px-8 py-3.5 rounded-xl gradient-bg text-slate-950 font-bold shadow-xl shadow-cyan-500/25 hover:scale-105 transition duration-300 hover:shadow-cyan-500/50 flex items-center gap-2">
                         <i class="fas fa-paper-plane"></i> Contact Me
                     </a>
-                    <a href="#" download class="px-8 py-3.5 rounded-xl glass-card font-bold border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 hover:scale-105 transition duration-300 flex items-center gap-2">
+                    <a href="#" download class="px-8 py-3.5 rounded-xl glass-card font-semibold border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 hover:scale-105 transition duration-300 flex items-center gap-2 shadow-lg">
                         <i class="fas fa-download"></i> Download Resume
                     </a>
                 </div>
 
-                <!-- Location & Status Tag -->
-                <div class="pt-2 text-xs text-slate-400 flex items-center justify-center md:justify-start gap-4">
-                    <span><i class="fas fa-map-marker-alt text-cyan-400 mr-1"></i> Sri Lanka</span>
-                    <span>•</span>
-                    <span><i class="fas fa-circle text-emerald-400 text-[8px] mr-1"></i> Open to Internships</span>
-                </div>
-
                 <!-- Mobile Social Icons -->
-                <div class="flex justify-center md:justify-start gap-6 pt-2 lg:hidden text-2xl text-slate-400">
+                <div class="flex justify-center md:justify-start gap-6 pt-4 lg:hidden text-2xl text-slate-400">
                     <a href="https://github.com/" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-github"></i></a>
                     <a href="https://dagshub.com/" target="_blank" class="hover:text-cyan-400 transition"><i class="fas fa-database"></i></a>
                     <a href="https://www.linkedin.com/in/jayani-samarakoon-b7b827427/" target="_blank" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin"></i></a>
@@ -195,47 +186,21 @@
                 </div>
             </div>
 
-            <!-- Right Column: Hero Image Frame with Floating Badges -->
+            <!-- Hero Image Frame -->
             <div data-aos="fade-left" class="flex justify-center relative">
-                
-                <div class="relative w-64 h-64 sm:w-80 sm:h-80">
-                    
-                    <!-- Outer Glowing Ring -->
-                    <div class="absolute -inset-1.5 gradient-bg rounded-[2rem] blur opacity-50 group-hover:opacity-100 transition duration-1000 animate-pulse-glow"></div>
-                    
-                    <!-- Main Frame -->
-                    <div class="relative w-full h-full rounded-[1.8rem] overflow-hidden p-1 gradient-bg hero-glow group">
-                        <div class="w-full h-full bg-slate-900 rounded-[1.6rem] overflow-hidden relative">
-                            <img src="jayani.jpg" alt="Jayani Samarakoon" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-                        </div>
+                <div class="absolute -inset-1 rounded-[32px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 blur-lg opacity-50 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden p-1 gradient-bg shadow-2xl shadow-cyan-500/30 group">
+                    <div class="w-full h-full bg-slate-900 rounded-[22px] overflow-hidden relative">
+                        <img src="C:\Users\jayani\Downloads\photo.jpg" alt="Jayani Samarakoon" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                     </div>
-
-                    <!-- Floating Badge 1: AI / ML -->
-                    <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 glass-card border border-cyan-500/40 text-cyan-300 px-3.5 py-2 rounded-2xl text-xs font-bold shadow-xl flex items-center gap-2 backdrop-blur-md animate-float">
-                        <i class="fas fa-brain text-cyan-400 text-sm"></i>
-                        <span>AI & Machine Learning</span>
-                    </div>
-
-                    <!-- Floating Badge 2: Full Stack -->
-                    <div class="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 glass-card border border-indigo-500/40 text-indigo-300 px-3.5 py-2 rounded-2xl text-xs font-bold shadow-xl flex items-center gap-2 backdrop-blur-md animate-float" style="animation-delay: 2s;">
-                        <i class="fas fa-code text-indigo-400 text-sm"></i>
-                        <span>Full-Stack & Web</span>
-                    </div>
-
-                    <!-- Floating Badge 3: MLOps -->
-                    <div class="absolute top-1/2 -left-6 transform -translate-y-1/2 glass-card border border-purple-500/40 text-purple-300 px-3 py-1.5 rounded-xl text-[11px] font-bold shadow-xl hidden sm:flex items-center gap-1.5 backdrop-blur-md">
-                        <i class="fas fa-cogs text-purple-400"></i> MLOps
-                    </div>
-
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- 📊 Statistics Counter Section -->
-    <section class="py-10 border-y border-slate-800/80 glass-card relative z-10">
+    <section class="py-10 border-y border-slate-800/60 glass-card relative z-10">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div data-aos="zoom-in" data-aos-delay="100">
                 <h3 class="text-4xl sm:text-5xl font-extrabold gradient-text counter" data-target="6">0</h3>
@@ -257,7 +222,7 @@
     </section>
 
     <!-- 👩 About Me Section -->
-    <section id="about" class="py-20 px-6">
+    <section id="about" class="py-20 px-6 relative z-10">
         <div class="max-w-5xl mx-auto">
             <div data-aos="fade-up" class="text-center space-y-3 mb-12">
                 <h2 class="text-3xl sm:text-4xl font-extrabold tracking-wide">About <span class="gradient-text">Me</span></h2>
@@ -298,7 +263,7 @@
     </section>
 
     <!-- 🎓 Education Section -->
-    <section id="education" class="py-20 px-6 bg-slate-900/30">
+    <section id="education" class="py-20 px-6 bg-slate-900/30 relative z-10">
         <div class="max-w-5xl mx-auto">
             <div data-aos="fade-up" class="text-center space-y-3 mb-16">
                 <h2 class="text-3xl sm:text-4xl font-extrabold">Education <span class="gradient-text">Journey</span></h2>
@@ -340,7 +305,7 @@
     </section>
 
     <!-- 💻 Technical & Soft Skills Section -->
-    <section id="skills" class="py-20 px-6">
+    <section id="skills" class="py-20 px-6 relative z-10">
         <div class="max-w-6xl mx-auto">
             <div data-aos="fade-up" class="text-center space-y-3 mb-16">
                 <h2 class="text-3xl sm:text-4xl font-extrabold">Skills & <span class="gradient-text">Proficiencies</span></h2>
@@ -498,7 +463,7 @@
     </section>
 
     <!-- 🚀 Featured Projects Section -->
-    <section id="projects" class="py-20 px-6 bg-slate-900/30">
+    <section id="projects" class="py-20 px-6 bg-slate-900/30 relative z-10">
         <div class="max-w-6xl mx-auto">
             <div data-aos="fade-up" class="text-center space-y-3 mb-12">
                 <h2 class="text-3xl sm:text-4xl font-extrabold">Featured <span class="gradient-text">Projects</span></h2>
@@ -524,53 +489,492 @@
                             <span class="text-[10px] px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold uppercase">Ongoing (2027)</span>
                             <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-cyan-400"><i class="fab fa-github text-lg"></i></a>
                         </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">DeepShield</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Explainable Multimodal Framework for Trust Assessment and Evidence-Based Fake News Detection using text, image, metadata analysis, Retrieval-Augmented Generation (RAG), and XAI techniques for Trust Score generation.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mt-auto">
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Python</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">PyTorch</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">BERT</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">CLIP</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">FAISS</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">FastAPI</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">React.js</span>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Project 2: Customer Churn Prediction -->
+                <div data-aos="fade-up" data-aos-delay="100" class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between" data-category="mlops">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold uppercase">Individual | Feb - Mar 2026</span>
+                            <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-cyan-400"><i class="fab fa-github text-lg"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">Customer Churn Prediction with MLOps</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Production-ready MLOps pipeline for Telco customer churn prediction. Prepared 7,043 records, tracked models with MLflow, DVC, Apache Airflow, Docker, achieving 81.97% accuracy.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Python</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Scikit-learn</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">MLflow</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">DVC</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Airflow</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Docker</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: SMS SPAM Detection System -->
+                <div data-aos="fade-up" data-aos-delay="200" class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between" data-category="ai">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-semibold uppercase">Group | July 2026</span>
+                            <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-cyan-400"><i class="fab fa-github text-lg"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">SMS SPAM Detection System</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Trained Random Forest & optimized LSTM deep learning models for sequential text spam classification. Developed a responsive web UI for real-time predictions.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Python</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Random Forest</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">LSTM</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Flask/FastAPI</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">TensorFlow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Hospital Appointment No-Show Prediction -->
+                <div data-aos="fade-up" data-aos-delay="300" class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between" data-category="ai">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold uppercase">Group | August 2026</span>
+                            <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-cyan-400"><i class="fab fa-github text-lg"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">Hospital Appointment No-Show Prediction</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Machine learning solution to predict patient appointment no-shows using healthcare data, feature importance analysis, EDA, and an interactive Streamlit web app.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Python</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Pandas</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">NumPy</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Scikit-learn</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Streamlit</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Medical Store Management System -->
+                <div data-aos="fade-up" data-aos-delay="400" class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between" data-category="web">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-semibold uppercase">Group | June - Aug 2025</span>
+                            <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-cyan-400"><i class="fab fa-github text-lg"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">Medical Store Management System</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Designed reusable React components and intuitive UI/UX for pharmaceutical store management, integrated with backend APIs in an Agile setup.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">React.js</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">JavaScript</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">HTML5</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: LankaSmartMart Mobile App -->
+                <div data-aos="fade-up" data-aos-delay="500" class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between" data-category="mobile">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold uppercase">Group | Jan - Feb 2026</span>
+                            <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-cyan-400"><i class="fab fa-github text-lg"></i></a>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">LankaSmartMart Mobile App</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Complete Figma UI/UX prototype & Android application development for smart grocery store management with real-time database updates and Git workflows.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Figma</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Android Studio</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Firebase</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">MySQL</span>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700">Git/GitHub</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 💼 Services Section -->
+    <section id="services" class="py-20 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div data-aos="fade-up" class="text-center space-y-3 mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold">My <span class="gradient-text">Services</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div data-aos="fade-up" class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">AI & Machine Learning</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Building predictive models, natural language processing solutions, RAG frameworks, and deep learning architectures.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div data-aos="fade-up" data-aos-delay="100" class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">MLOps Engineering</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Designing end-to-end MLOps pipelines using MLflow, Airflow, DVC, and Docker for reproducible machine learning workflows.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Full-Stack Development</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Creating interactive, modern web applications using React.js, FastAPI, Flask, and scalable REST APIs.
+                    </p>
+                </div>
+
+                <!-- Service 4 -->
+                <div data-aos="fade-up" data-aos-delay="300" class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Data Engineering & Analytics</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Exploratory data analysis (EDA), feature engineering, PySpark workflows, and interactive Power BI dashboards.
+                    </p>
+                </div>
+
+                <!-- Service 5 -->
+                <div data-aos="fade-up" data-aos-delay="400" class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Prototyping intuitive user interfaces, user flows, and interactive mockups with Figma for web & mobile apps.
+                    </p>
+                </div>
+
+                <!-- Service 6 -->
+                <div data-aos="fade-up" data-aos-delay="500" class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mobile App Development</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Building Android and Flutter cross-platform applications integrated with real-time cloud backends.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AOS Animation Library JS -->
+    <!-- 📞 Contact Section -->
+    <section id="contact" class="py-20 px-6 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div data-aos="fade-up" class="text-center space-y-3 mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Get In <span class="gradient-text">Touch</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div data-aos="fade-right" class="space-y-6">
+                    <h3 class="text-2xl font-bold">Let's work together!</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        I am currently looking for software engineering internship and project opportunities. Feel free to contact me for collaborations, inquiries, or discussions.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
+                            <div class="w-12 h-12 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-semibold">Phone</p>
+                                <p class="text-sm font-bold text-slate-200">+94 71 624 6625</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-semibold">Email</p>
+                                <p class="text-sm font-bold text-slate-200">kiruusamarakoon@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
+                            <div class="w-12 h-12 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase font-semibold">Location</p>
+                                <p class="text-sm font-bold text-slate-200">Kegalla, Sri Lanka</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div data-aos="fade-left" class="glass-card p-8 rounded-3xl border border-slate-800">
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-2">Your Name</label>
+                            <input type="text" required placeholder="John Doe" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-2">Your Email</label>
+                            <input type="email" required placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-2">Message</label>
+                            <textarea rows="4" required placeholder="Hi Jayani, I'd like to discuss a project..." class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl gradient-bg text-slate-950 font-bold hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-slate-800/80 text-center text-xs text-slate-500 relative z-10">
+        <p>© 2026 Jayani Samarakoon. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 p-3.5 rounded-full gradient-bg text-slate-950 shadow-lg hidden hover:scale-110 transition z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS JS CDN -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Interactive Scripts -->
     <script>
+        // Canvas Particle Network Background Script
+        const canvas = document.getElementById('particle-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = [];
+            const particleCount = Math.min(Math.floor(width / 15), 75);
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.7,
+                    vy: (Math.random() - 0.5) * 0.7,
+                    radius: Math.random() * 2 + 1
+                });
+            }
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, width, height);
+                const isDark = document.documentElement.classList.contains('dark');
+                const pColor = isDark ? 'rgba(6, 182, 212, ' : 'rgba(99, 102, 241, ';
+
+                for (let i = 0; i < particles.length; i++) {
+                    let p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > width) p.vx *= -1;
+                    if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = pColor + '0.5)';
+                    ctx.fill();
+
+                    for (let j = i + 1; j < particles.length; j++) {
+                        let p2 = particles[j];
+                        let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.strokeStyle = pColor + (1 - dist / 120) * 0.25 + ')';
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+        }
+
+        // Initialize AOS Scroll Animation
         AOS.init({
             duration: 800,
             once: true
         });
 
-        // Typewriter Effect
-        if (document.getElementById('typed-text')) {
-            new Typed('#typed-text', {
-                strings: ['Software Engineering Student', 'AI & ML Enthusiast', 'MLOps Practitioner', 'Full-Stack Developer'],
-                typeSpeed: 60,
-                backSpeed: 40,
-                loop: true
-            });
-        }
+        // Typed.js Effect
+        new Typed('#typed-text', {
+            strings: ['Software Developer', 'AI & ML Enthusiast', 'MLOps Practitioner', 'UI/UX Designer'],
+            typeSpeed: 60,
+            backSpeed: 40,
+            loop: true
+        });
 
-        // Particle Network Initialization
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#06b6d4" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.4 },
-                "size": { "value": 3, "random": true },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 140,
-                    "color": "#6366f1",
-                    "opacity": 0.35,
-                    "width": 1
-                },
-                "move": { "enable": true, "speed": 1.4 }
-            },
-            "interactivity": {
-                "events": {
-                    "onhover": { "enable": true, "mode": "grab" }
+        // Dark / Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-cyan-500', 'text-slate-950');
+                    b.classList.add('glass-card');
+                });
+                btn.classList.add('active', 'bg-cyan-500', 'text-slate-950');
+                btn.classList.remove('glass-card');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Animated Statistics Counter
+        const counters = document.querySelectorAll('.counter');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            if (counters.length > 0) {
+                const targetPos = counters[0].offsetTop;
+
+                if (scrollPos > targetPos && !animated) {
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0;
+                        const speed = target / 30;
+
+                        const updateCount = () => {
+                            count += speed;
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count) + "+";
+                                setTimeout(updateCount, 40);
+                            } else {
+                                counter.innerText = target + "+";
+                            }
+                        };
+                        updateCount();
+                    });
+                    animated = true;
                 }
-            },
-            "retina_detect": true
+            }
+
+            // Back to top button visibility
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 400) {
+                backToTop.classList.remove('hidden');
+            } else {
+                backToTop.classList.add('hidden');
+            }
+        });
+
+        // Skill Bar Animation Trigger
+        window.addEventListener('scroll', () => {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    bar.style.width = bar.getAttribute('data-width');
+                }
+            });
+        });
+
+        // Back to Top Scroll Event
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form Submit Handler
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you, Jayani will get back to you soon!');
+            e.target.reset();
         });
     </script>
 </body>
