@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Jayani Samarakoon | Portfolio</title>
 
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -16,24 +18,31 @@
                     colors: {
                         primary: '#06b6d4',
                         secondary: '#6366f1',
-                        accent: '#a855f7',
+                        accent: '#a855f7'
                     }
                 }
             }
         }
     </script>
 
-    <!-- FontAwesome Icons CDN -->
+    <!-- FontAwesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- AOS Animation Library CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+          rel="stylesheet">
 
     <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
+
     <style>
+
+        /* =====================================================
+           GLASS CARD
+        ===================================================== */
+
         .glass-card {
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(12px);
@@ -46,130 +55,403 @@
             border: 1px solid rgba(0, 0, 0, 0.08);
         }
 
+
+        /* =====================================================
+           GRADIENT
+        ===================================================== */
+
         .gradient-text {
-            background: linear-gradient(135deg, #06b6d4, #6366f1, #a855f7);
+            background: linear-gradient(
+                135deg,
+                #06b6d4,
+                #6366f1,
+                #a855f7
+            );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, #06b6d4, #6366f1);
+            background: linear-gradient(
+                135deg,
+                #06b6d4,
+                #6366f1
+            );
         }
 
+
+        /* =====================================================
+           GLOW
+        ===================================================== */
+
         .glow-effect {
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+            box-shadow:
+                0 0 25px rgba(6, 182, 212, 0.15);
         }
+
+
+        /* =====================================================
+           GRID BACKGROUND
+        ===================================================== */
 
         .bg-grid-pattern {
             background-size: 40px 40px;
+
             background-image:
-                linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+                linear-gradient(
+                    to right,
+                    rgba(255,255,255,0.04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(255,255,255,0.04) 1px,
+                    transparent 1px
+                );
         }
 
         .light .bg-grid-pattern {
             background-image:
-                linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+                linear-gradient(
+                    to right,
+                    rgba(0,0,0,0.04) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,0.04) 1px,
+                    transparent 1px
+                );
         }
+
+
+        /* =====================================================
+           AMBIENT GLOW
+        ===================================================== */
 
         .ambient-glow-orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(90px);
             pointer-events: none;
-            animation: floatGlow 8s ease-in-out infinite alternate;
+
+            animation:
+                floatGlow 8s ease-in-out infinite alternate;
         }
 
         @keyframes floatGlow {
+
             0% {
-                transform: translate(0px, 0px) scale(1);
+                transform:
+                    translate(0px, 0px)
+                    scale(1);
             }
 
             100% {
-                transform: translate(30px, -20px) scale(1.1);
+                transform:
+                    translate(30px, -20px)
+                    scale(1.1);
             }
+
         }
+
+
+        /* =====================================================
+           PROJECT CARD
+        ===================================================== */
+
+        .project-card {
+            min-height: 100%;
+        }
+
+
+        /* =====================================================
+           SMOOTH HOVER
+        ===================================================== */
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
     </style>
+
 </head>
 
-<body class="bg-slate-950 text-slate-100 light:bg-slate-50 light:text-slate-900 font-sans transition-colors duration-300 relative selection:bg-cyan-500 selection:text-white">
 
-    <!-- Grid Background -->
-    <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0 opacity-70"></div>
+<body
+    class="bg-slate-950
+           text-slate-100
+           light:bg-slate-50
+           light:text-slate-900
+           font-sans
+           transition-colors
+           duration-300
+           relative
+           selection:bg-cyan-500
+           selection:text-white">
 
-    <!-- Particle Background -->
-    <canvas id="particle-canvas"
-            class="fixed inset-0 pointer-events-none z-0"></canvas>
 
-    <!-- Floating Social Icons -->
-    <div class="fixed left-5 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4 p-3 glass-card rounded-full shadow-2xl">
+    <!-- =====================================================
+         BACKGROUND GRID
+    ===================================================== -->
 
-        <a href="https://github.com/cit-23-02-0104-creator"
-           target="_blank"
-           title="GitHub"
-           class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-cyan-500 hover:text-slate-950 transition-all text-slate-300 hover:scale-110">
+    <div
+        class="fixed inset-0
+               bg-grid-pattern
+               pointer-events-none
+               z-0
+               opacity-70">
+    </div>
+
+
+    <!-- =====================================================
+         PARTICLE CANVAS
+    ===================================================== -->
+
+    <canvas
+        id="particle-canvas"
+        class="fixed inset-0
+               pointer-events-none
+               z-0">
+    </canvas>
+
+
+
+    <!-- =====================================================
+         FLOATING SOCIAL ICONS
+    ===================================================== -->
+
+    <div
+        class="fixed
+               left-5
+               top-1/2
+               -translate-y-1/2
+               z-40
+               hidden
+               lg:flex
+               flex-col
+               gap-4
+               p-3
+               glass-card
+               rounded-full
+               shadow-2xl">
+
+
+        <!-- GitHub -->
+
+        <a
+            href="https://github.com/cit-23-02-0104-creator"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub"
+            class="w-10 h-10
+                   rounded-full
+                   flex items-center justify-center
+                   hover:bg-cyan-500
+                   hover:text-slate-950
+                   transition-all
+                   text-slate-300
+                   hover:scale-110">
+
             <i class="fab fa-github text-xl"></i>
+
         </a>
 
-        <a href="https://dagshub.com/cit-23-02-0104-creator"
-           target="_blank"
-           title="DAGsHub"
-           class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-cyan-500 hover:text-slate-950 transition-all text-slate-300 hover:scale-110">
+
+        <!-- DAGsHub -->
+
+        <a
+            href="https://dagshub.com/cit-23-02-0104-creator"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="DAGsHub"
+            class="w-10 h-10
+                   rounded-full
+                   flex items-center justify-center
+                   hover:bg-cyan-500
+                   hover:text-slate-950
+                   transition-all
+                   text-slate-300
+                   hover:scale-110">
+
             <i class="fas fa-database text-lg"></i>
+
         </a>
 
-        <a href="https://www.linkedin.com/in/jayani-samarakoon-b7b827427/"
-           target="_blank"
-           title="LinkedIn"
-           class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-cyan-500 hover:text-slate-950 transition-all text-slate-300 hover:scale-110">
+
+        <!-- LinkedIn -->
+
+        <a
+            href="https://www.linkedin.com/in/jayani-samarakoon-b7b827427/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+            class="w-10 h-10
+                   rounded-full
+                   flex items-center justify-center
+                   hover:bg-cyan-500
+                   hover:text-slate-950
+                   transition-all
+                   text-slate-300
+                   hover:scale-110">
+
             <i class="fab fa-linkedin-in text-xl"></i>
+
         </a>
 
-        <a href="mailto:kiruusamarakoon@gmail.com"
-           title="Email"
-           class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-cyan-500 hover:text-slate-950 transition-all text-slate-300 hover:scale-110">
+
+        <!-- Email -->
+
+        <a
+            href="mailto:kiruusamarakoon@gmail.com"
+            title="Email"
+            class="w-10 h-10
+                   rounded-full
+                   flex items-center justify-center
+                   hover:bg-cyan-500
+                   hover:text-slate-950
+                   transition-all
+                   text-slate-300
+                   hover:scale-110">
+
             <i class="fas fa-envelope text-xl"></i>
+
         </a>
 
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-card transition-all duration-300">
 
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-            <a href="#home"
-               class="text-2xl font-black tracking-wider gradient-text flex items-center gap-2">
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
+
+    <nav
+        class="fixed
+               top-0
+               w-full
+               z-50
+               glass-card
+               transition-all
+               duration-300">
+
+
+        <div
+            class="max-w-7xl
+                   mx-auto
+                   px-6
+                   py-4
+                   flex
+                   justify-between
+                   items-center">
+
+
+            <!-- Logo -->
+
+            <a
+                href="#home"
+                class="text-2xl
+                       font-black
+                       tracking-wider
+                       gradient-text
+                       flex
+                       items-center
+                       gap-2">
+
                 <i class="fas fa-code text-cyan-400"></i>
+
                 JAYANI.
+
             </a>
 
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide">
 
-                <a href="#home" class="hover:text-cyan-400 transition">Home</a>
-                <a href="#about" class="hover:text-cyan-400 transition">About</a>
-                <a href="#education" class="hover:text-cyan-400 transition">Education</a>
-                <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
-                <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-                <a href="#services" class="hover:text-cyan-400 transition">Services</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+
+            <!-- Desktop Navigation -->
+
+            <div
+                class="hidden
+                       md:flex
+                       items-center
+                       space-x-8
+                       text-sm
+                       font-semibold
+                       tracking-wide">
+
+                <a href="#home"
+                   class="hover:text-cyan-400 transition">
+                    Home
+                </a>
+
+                <a href="#about"
+                   class="hover:text-cyan-400 transition">
+                    About
+                </a>
+
+                <a href="#education"
+                   class="hover:text-cyan-400 transition">
+                    Education
+                </a>
+
+                <a href="#skills"
+                   class="hover:text-cyan-400 transition">
+                    Skills
+                </a>
+
+                <a href="#projects"
+                   class="hover:text-cyan-400 transition">
+                    Projects
+                </a>
+
+                <a href="#services"
+                   class="hover:text-cyan-400 transition">
+                    Services
+                </a>
+
+                <a href="#contact"
+                   class="hover:text-cyan-400 transition">
+                    Contact
+                </a>
 
             </div>
 
-            <!-- Theme / Mobile -->
+
+
+            <!-- Theme + Mobile -->
+
             <div class="flex items-center gap-4">
 
-                <button id="themeToggle"
-                        class="p-2.5 rounded-full bg-slate-800 dark:bg-slate-800 light:bg-slate-200 text-yellow-400 dark:text-yellow-400 light:text-slate-700 hover:rotate-45 transition-all">
 
-                    <i id="themeIcon" class="fas fa-sun text-lg"></i>
+                <!-- Theme Button -->
+
+                <button
+                    id="themeToggle"
+                    class="p-2.5
+                           rounded-full
+                           bg-slate-800
+                           dark:bg-slate-800
+                           light:bg-slate-200
+                           text-yellow-400
+                           hover:rotate-45
+                           transition-all">
+
+                    <i
+                        id="themeIcon"
+                        class="fas fa-sun text-lg">
+                    </i>
 
                 </button>
 
-                <button id="mobileMenuBtn"
-                        class="md:hidden text-2xl text-slate-300 hover:text-cyan-400 focus:outline-none">
+
+                <!-- Mobile Menu -->
+
+                <button
+                    id="mobileMenuBtn"
+                    class="md:hidden
+                           text-2xl
+                           text-slate-300
+                           hover:text-cyan-400
+                           focus:outline-none">
 
                     <i class="fas fa-bars"></i>
 
@@ -179,51 +461,192 @@
 
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobileMenu"
-             class="hidden md:hidden bg-slate-900/95 border-b border-slate-800 px-6 py-4 flex-col gap-4 text-center">
 
-            <a href="#home" class="mobile-link py-2 hover:text-cyan-400 border-b border-slate-800">Home</a>
-            <a href="#about" class="mobile-link py-2 hover:text-cyan-400 border-b border-slate-800">About</a>
-            <a href="#education" class="mobile-link py-2 hover:text-cyan-400 border-b border-slate-800">Education</a>
-            <a href="#skills" class="mobile-link py-2 hover:text-cyan-400 border-b border-slate-800">Skills</a>
-            <a href="#projects" class="mobile-link py-2 hover:text-cyan-400 border-b border-slate-800">Projects</a>
-            <a href="#services" class="mobile-link py-2 hover:text-cyan-400 border-b border-slate-800">Services</a>
-            <a href="#contact" class="mobile-link py-2 hover:text-cyan-400">Contact</a>
+
+        <!-- Mobile Menu -->
+
+        <div
+            id="mobileMenu"
+            class="hidden
+                   md:hidden
+                   bg-slate-900/95
+                   border-b
+                   border-slate-800
+                   px-6
+                   py-4
+                   flex-col
+                   gap-4
+                   text-center">
+
+            <a href="#home"
+               class="mobile-link py-2
+                      hover:text-cyan-400
+                      border-b border-slate-800">
+                Home
+            </a>
+
+            <a href="#about"
+               class="mobile-link py-2
+                      hover:text-cyan-400
+                      border-b border-slate-800">
+                About
+            </a>
+
+            <a href="#education"
+               class="mobile-link py-2
+                      hover:text-cyan-400
+                      border-b border-slate-800">
+                Education
+            </a>
+
+            <a href="#skills"
+               class="mobile-link py-2
+                      hover:text-cyan-400
+                      border-b border-slate-800">
+                Skills
+            </a>
+
+            <a href="#projects"
+               class="mobile-link py-2
+                      hover:text-cyan-400
+                      border-b border-slate-800">
+                Projects
+            </a>
+
+            <a href="#services"
+               class="mobile-link py-2
+                      hover:text-cyan-400
+                      border-b border-slate-800">
+                Services
+            </a>
+
+            <a href="#contact"
+               class="mobile-link py-2
+                      hover:text-cyan-400">
+                Contact
+            </a>
 
         </div>
 
     </nav>
 
-    <!-- HOME -->
-    <section id="home"
-             class="min-h-screen flex items-center justify-center pt-28 pb-16 px-6 relative overflow-hidden z-10">
 
-        <div class="ambient-glow-orb top-10 left-10 w-96 h-96 bg-cyan-500/20 -z-10"></div>
 
-        <div class="ambient-glow-orb bottom-10 right-10 w-[500px] h-[500px] bg-purple-600/20 -z-10"
-             style="animation-delay:-3s;">
+    <!-- =====================================================
+         HOME
+    ===================================================== -->
+
+    <section
+        id="home"
+        class="min-h-screen
+               flex
+               items-center
+               justify-center
+               pt-28
+               pb-16
+               px-6
+               relative
+               overflow-hidden
+               z-10">
+
+
+        <!-- Glow -->
+
+        <div
+            class="ambient-glow-orb
+                   top-10
+                   left-10
+                   w-96
+                   h-96
+                   bg-cyan-500/20
+                   -z-10">
         </div>
 
-        <div class="ambient-glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 -z-10"
-             style="animation-delay:-5s;">
+
+        <div
+            class="ambient-glow-orb
+                   bottom-10
+                   right-10
+                   w-[500px]
+                   h-[500px]
+                   bg-purple-600/20
+                   -z-10"
+            style="animation-delay:-3s;">
         </div>
 
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-            <div data-aos="fade-right" class="space-y-6 text-center md:text-left">
+        <div
+            class="ambient-glow-orb
+                   top-1/2
+                   left-1/2
+                   -translate-x-1/2
+                   -translate-y-1/2
+                   w-[600px]
+                   h-[600px]
+                   bg-indigo-500/10
+                   -z-10"
+            style="animation-delay:-5s;">
+        </div>
 
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-cyan-500/40 text-cyan-400 text-sm font-medium shadow-lg shadow-cyan-500/10 backdrop-blur-md">
 
-                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+
+        <div
+            class="max-w-7xl
+                   mx-auto
+                   grid
+                   md:grid-cols-2
+                   gap-12
+                   items-center">
+
+
+            <!-- Intro -->
+
+            <div
+                data-aos="fade-right"
+                class="space-y-6
+                       text-center
+                       md:text-left">
+
+
+                <div
+                    class="inline-flex
+                           items-center
+                           gap-2
+                           px-4
+                           py-1.5
+                           rounded-full
+                           glass-card
+                           border
+                           border-cyan-500/40
+                           text-cyan-400
+                           text-sm
+                           font-medium
+                           shadow-lg
+                           shadow-cyan-500/10">
+
+                    <span
+                        class="w-2.5
+                               h-2.5
+                               rounded-full
+                               bg-cyan-400
+                               animate-ping">
+                    </span>
 
                     Undergraduate in Software Engineering
 
                 </div>
 
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-tight">
 
-                    Hi, I'm <br>
+
+                <h1
+                    class="text-4xl
+                           sm:text-6xl
+                           font-black
+                           tracking-tight
+                           leading-tight">
+
+                    Hi, I'm
+                    <br>
 
                     <span class="gradient-text">
                         JAYANI SAMARAKOON
@@ -231,17 +654,31 @@
 
                 </h1>
 
-                <p class="text-xl text-slate-400 font-light">
+
+
+                <p
+                    class="text-xl
+                           text-slate-400
+                           font-light">
 
                     SLTC Research University |
 
-                    <span id="typed-text"
-                          class="text-cyan-400 font-semibold">
+                    <span
+                        id="typed-text"
+                        class="text-cyan-400
+                               font-semibold">
                     </span>
 
                 </p>
 
-                <p class="text-slate-400 max-w-lg leading-relaxed text-sm sm:text-base">
+
+
+                <p
+                    class="text-slate-400
+                           max-w-lg
+                           leading-relaxed
+                           text-sm
+                           sm:text-base">
 
                     Passionate about building AI-powered applications,
                     machine learning pipelines, natural language processing
@@ -250,55 +687,121 @@
 
                 </p>
 
-                <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
 
-                    <a href="#contact"
-                       class="px-8 py-3.5 rounded-xl gradient-bg text-slate-950 font-bold shadow-xl shadow-cyan-500/25 hover:scale-105 transition duration-300 hover:shadow-cyan-500/50 flex items-center gap-2">
+
+                <!-- Buttons -->
+
+                <div
+                    class="flex
+                           flex-wrap
+                           items-center
+                           justify-center
+                           md:justify-start
+                           gap-4
+                           pt-4">
+
+
+                    <a
+                        href="#contact"
+                        class="px-8
+                               py-3.5
+                               rounded-xl
+                               gradient-bg
+                               text-slate-950
+                               font-bold
+                               shadow-xl
+                               shadow-cyan-500/25
+                               hover:scale-105
+                               transition
+                               duration-300
+                               flex
+                               items-center
+                               gap-2">
 
                         <i class="fas fa-paper-plane"></i>
+
                         Contact Me
 
                     </a>
 
-                    <a href="Jayani Samarakoon CV .pdf"
-                       download="Jayani Samarakoon CV .pdf"
-                       class="px-8 py-3.5 rounded-xl glass-card font-semibold border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 hover:scale-105 transition duration-300 flex items-center gap-2 shadow-lg">
+
+
+                    <a
+                        href="Jayani Samarakoon CV .pdf"
+                        download="Jayani Samarakoon CV .pdf"
+                        class="px-8
+                               py-3.5
+                               rounded-xl
+                               glass-card
+                               font-semibold
+                               border
+                               border-cyan-500/30
+                               text-cyan-400
+                               hover:bg-cyan-500/10
+                               hover:border-cyan-400
+                               hover:scale-105
+                               transition
+                               duration-300
+                               flex
+                               items-center
+                               gap-2">
 
                         <i class="fas fa-download"></i>
+
                         Download CV
 
                     </a>
 
                 </div>
 
-                <div class="flex justify-center md:justify-start gap-6 pt-4 lg:hidden text-2xl text-slate-400">
 
-                    <a href="https://github.com/cit-23-02-0104-creator"
-                       target="_blank"
-                       class="hover:text-cyan-400 transition">
+
+                <!-- Mobile Social -->
+
+                <div
+                    class="flex
+                           justify-center
+                           md:justify-start
+                           gap-6
+                           pt-4
+                           lg:hidden
+                           text-2xl
+                           text-slate-400">
+
+
+                    <a
+                        href="https://github.com/cit-23-02-0104-creator"
+                        target="_blank"
+                        class="hover:text-cyan-400 transition">
 
                         <i class="fab fa-github"></i>
 
                     </a>
 
-                    <a href="https://dagshub.com/cit-23-02-0104-creator"
-                       target="_blank"
-                       class="hover:text-cyan-400 transition">
+
+                    <a
+                        href="https://dagshub.com/cit-23-02-0104-creator"
+                        target="_blank"
+                        class="hover:text-cyan-400 transition">
 
                         <i class="fas fa-database"></i>
 
                     </a>
 
-                    <a href="https://www.linkedin.com/in/jayani-samarakoon-b7b827427/"
-                       target="_blank"
-                       class="hover:text-cyan-400 transition">
+
+                    <a
+                        href="https://www.linkedin.com/in/jayani-samarakoon-b7b827427/"
+                        target="_blank"
+                        class="hover:text-cyan-400 transition">
 
                         <i class="fab fa-linkedin"></i>
 
                     </a>
 
-                    <a href="mailto:kiruusamarakoon@gmail.com"
-                       class="hover:text-cyan-400 transition">
+
+                    <a
+                        href="mailto:kiruusamarakoon@gmail.com"
+                        class="hover:text-cyan-400 transition">
 
                         <i class="fas fa-envelope"></i>
 
@@ -308,22 +811,73 @@
 
             </div>
 
-            <!-- Profile Image -->
-            <div data-aos="fade-left"
-                 class="flex justify-center relative">
 
-                <div class="absolute -inset-1 rounded-[32px] bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 blur-lg opacity-50 animate-pulse">
+
+            <!-- Profile -->
+
+            <div
+                data-aos="fade-left"
+                class="flex
+                       justify-center
+                       relative">
+
+
+                <div
+                    class="absolute
+                           -inset-1
+                           rounded-[32px]
+                           bg-gradient-to-r
+                           from-cyan-500
+                           via-indigo-500
+                           to-purple-500
+                           blur-lg
+                           opacity-50
+                           animate-pulse">
                 </div>
 
-                <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden p-1 gradient-bg shadow-2xl shadow-cyan-500/30">
 
-                    <div class="w-full h-full bg-slate-900 rounded-[22px] overflow-hidden relative">
+                <div
+                    class="relative
+                           w-64
+                           h-64
+                           sm:w-80
+                           sm:h-80
+                           rounded-3xl
+                           overflow-hidden
+                           p-1
+                           gradient-bg
+                           shadow-2xl
+                           shadow-cyan-500/30">
 
-                        <img src="jayani.jpg"
-                             alt="Jayani Samarakoon"
-                             class="w-full h-full object-cover hover:scale-105 transition duration-500">
 
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div
+                        class="w-full
+                               h-full
+                               bg-slate-900
+                               rounded-[22px]
+                               overflow-hidden
+                               relative">
+
+
+                        <img
+                            src="jayani.jpg"
+                            alt="Jayani Samarakoon"
+                            class="w-full
+                                   h-full
+                                   object-cover
+                                   hover:scale-105
+                                   transition
+                                   duration-500">
+
+
+                        <div
+                            class="absolute
+                                   inset-0
+                                   bg-gradient-to-t
+                                   from-slate-950/80
+                                   via-transparent
+                                   to-transparent">
+                        </div>
 
                     </div>
 
@@ -336,59 +890,156 @@
     </section>
 
 
-    <!-- STATISTICS -->
-    <section class="py-10 border-y border-slate-800/60 glass-card relative z-10">
 
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <!-- =====================================================
+         STATISTICS
+    ===================================================== -->
 
-            <div data-aos="zoom-in" data-aos-delay="100">
+    <section
+        class="py-10
+               border-y
+               border-slate-800/60
+               glass-card
+               relative
+               z-10">
 
-                <h3 class="text-4xl sm:text-5xl font-extrabold gradient-text counter"
-                    data-target="7">
+        <div
+            class="max-w-6xl
+                   mx-auto
+                   px-6
+                   grid
+                   grid-cols-2
+                   md:grid-cols-4
+                   gap-8
+                   text-center">
+
+
+            <div
+                data-aos="zoom-in"
+                data-aos-delay="100">
+
+                <h3
+                    class="text-4xl
+                           sm:text-5xl
+                           font-extrabold
+                           gradient-text
+                           counter"
+                    data-target="8">
+
                     0
+
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wider mt-2">
+                <p
+                    class="text-xs
+                           sm:text-sm
+                           text-slate-400
+                           font-medium
+                           uppercase
+                           tracking-wider
+                           mt-2">
+
                     Projects Completed
+
                 </p>
 
             </div>
 
-            <div data-aos="zoom-in" data-aos-delay="200">
 
-                <h3 class="text-4xl sm:text-5xl font-extrabold gradient-text counter"
+
+            <div
+                data-aos="zoom-in"
+                data-aos-delay="200">
+
+                <h3
+                    class="text-4xl
+                           sm:text-5xl
+                           font-extrabold
+                           gradient-text
+                           counter"
                     data-target="20">
+
                     0
+
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wider mt-2">
+                <p
+                    class="text-xs
+                           sm:text-sm
+                           text-slate-400
+                           font-medium
+                           uppercase
+                           tracking-wider
+                           mt-2">
+
                     Tools & Tech Stack
+
                 </p>
 
             </div>
 
-            <div data-aos="zoom-in" data-aos-delay="300">
 
-                <h3 class="text-4xl sm:text-5xl font-extrabold gradient-text counter"
+
+            <div
+                data-aos="zoom-in"
+                data-aos-delay="300">
+
+                <h3
+                    class="text-4xl
+                           sm:text-5xl
+                           font-extrabold
+                           gradient-text
+                           counter"
                     data-target="4">
+
                     0
+
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wider mt-2">
+                <p
+                    class="text-xs
+                           sm:text-sm
+                           text-slate-400
+                           font-medium
+                           uppercase
+                           tracking-wider
+                           mt-2">
+
                     Core Soft Skills
+
                 </p>
 
             </div>
 
-            <div data-aos="zoom-in" data-aos-delay="400">
 
-                <h3 class="text-4xl sm:text-5xl font-extrabold gradient-text counter"
+
+            <div
+                data-aos="zoom-in"
+                data-aos-delay="400">
+
+                <h3
+                    class="text-4xl
+                           sm:text-5xl
+                           font-extrabold
+                           gradient-text
+                           counter"
                     data-target="2">
+
                     0
+
                 </h3>
 
-                <p class="text-xs sm:text-sm text-slate-400 font-medium uppercase tracking-wider mt-2">
+                <p
+                    class="text-xs
+                           sm:text-sm
+                           text-slate-400
+                           font-medium
+                           uppercase
+                           tracking-wider
+                           mt-2">
+
                     Years Learning
+
                 </p>
 
             </div>
@@ -398,86 +1049,234 @@
     </section>
 
 
-    <!-- ABOUT -->
-    <section id="about" class="py-20 px-6 relative z-10">
+
+    <!-- =====================================================
+         ABOUT
+    ===================================================== -->
+
+    <section
+        id="about"
+        class="py-20
+               px-6
+               relative
+               z-10">
+
 
         <div class="max-w-5xl mx-auto">
 
-            <div data-aos="fade-up"
-                 class="text-center space-y-3 mb-12">
 
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-wide">
+            <div
+                data-aos="fade-up"
+                class="text-center
+                       space-y-3
+                       mb-12">
+
+                <h2
+                    class="text-3xl
+                           sm:text-4xl
+                           font-extrabold
+                           tracking-wide">
 
                     About
-                    <span class="gradient-text">Me</span>
+                    <span class="gradient-text">
+                        Me
+                    </span>
 
                 </h2>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-gradient-to-r
+                           from-cyan-400
+                           to-indigo-500
+                           mx-auto
+                           rounded-full">
+                </div>
 
             </div>
 
-            <div data-aos="fade-up"
-                 data-aos-delay="100"
-                 class="glass-card p-8 sm:p-12 rounded-3xl relative overflow-hidden border border-slate-800 glow-effect">
 
-                <p class="text-base sm:text-lg text-slate-300 leading-relaxed text-center sm:text-left font-light">
 
-                    Software Engineering undergraduate with hands-on experience
-                    in software development,
-                    <span class="text-cyan-400 font-medium">Machine Learning</span>,
-                    <span class="text-cyan-400 font-medium">Natural Language Processing (NLP)</span>,
-                    <span class="text-cyan-400 font-medium">UI/UX Design</span>,
-                    and user interface development through academic and research projects.
+            <div
+                data-aos="fade-up"
+                data-aos-delay="100"
+                class="glass-card
+                       p-8
+                       sm:p-12
+                       rounded-3xl
+                       relative
+                       overflow-hidden
+                       border
+                       border-slate-800
+                       glow-effect">
+
+
+                <p
+                    class="text-base
+                           sm:text-lg
+                           text-slate-300
+                           leading-relaxed
+                           text-center
+                           sm:text-left
+                           font-light">
+
+                    Software Engineering undergraduate with hands-on
+                    experience in software development,
+
+                    <span class="text-cyan-400 font-medium">
+                        Machine Learning
+                    </span>,
+
+                    <span class="text-cyan-400 font-medium">
+                        Natural Language Processing (NLP)
+                    </span>,
+
+                    <span class="text-cyan-400 font-medium">
+                        UI/UX Design
+                    </span>,
+
+                    and user interface development through academic and
+                    research projects.
 
                     Proficient in Python, Java, SQL, data preprocessing,
                     feature engineering, exploratory data analysis (EDA),
                     predictive modeling, and web application development.
 
-                    Passionate about designing user-centered applications and
-                    building intelligent AI-powered solutions to solve
+                    Passionate about designing user-centered applications
+                    and building intelligent AI-powered solutions to solve
                     real-world problems.
 
                 </p>
 
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-slate-800">
 
-                    <div class="p-4 rounded-xl bg-slate-900/50 text-center hover:border hover:border-cyan-500/30 transition">
 
-                        <i class="fas fa-brain text-cyan-400 text-2xl mb-2"></i>
+                <div
+                    class="grid
+                           grid-cols-2
+                           sm:grid-cols-4
+                           gap-4
+                           mt-8
+                           pt-8
+                           border-t
+                           border-slate-800">
 
-                        <h4 class="text-xs font-bold uppercase text-slate-300">
+
+                    <div
+                        class="p-4
+                               rounded-xl
+                               bg-slate-900/50
+                               text-center
+                               hover:border
+                               hover:border-cyan-500/30
+                               transition">
+
+                        <i
+                            class="fas fa-brain
+                                   text-cyan-400
+                                   text-2xl
+                                   mb-2">
+                        </i>
+
+                        <h4
+                            class="text-xs
+                                   font-bold
+                                   uppercase
+                                   text-slate-300">
+
                             AI & NLP Focus
+
                         </h4>
 
                     </div>
 
-                    <div class="p-4 rounded-xl bg-slate-900/50 text-center hover:border hover:border-indigo-500/30 transition">
 
-                        <i class="fas fa-cogs text-indigo-400 text-2xl mb-2"></i>
 
-                        <h4 class="text-xs font-bold uppercase text-slate-300">
+                    <div
+                        class="p-4
+                               rounded-xl
+                               bg-slate-900/50
+                               text-center
+                               hover:border
+                               hover:border-indigo-500/30
+                               transition">
+
+                        <i
+                            class="fas fa-cogs
+                                   text-indigo-400
+                                   text-2xl
+                                   mb-2">
+                        </i>
+
+                        <h4
+                            class="text-xs
+                                   font-bold
+                                   uppercase
+                                   text-slate-300">
+
                             MLOps Pipelines
+
                         </h4>
 
                     </div>
 
-                    <div class="p-4 rounded-xl bg-slate-900/50 text-center hover:border hover:border-purple-500/30 transition">
 
-                        <i class="fas fa-palette text-purple-400 text-2xl mb-2"></i>
 
-                        <h4 class="text-xs font-bold uppercase text-slate-300">
+                    <div
+                        class="p-4
+                               rounded-xl
+                               bg-slate-900/50
+                               text-center
+                               hover:border
+                               hover:border-purple-500/30
+                               transition">
+
+                        <i
+                            class="fas fa-palette
+                                   text-purple-400
+                                   text-2xl
+                                   mb-2">
+                        </i>
+
+                        <h4
+                            class="text-xs
+                                   font-bold
+                                   uppercase
+                                   text-slate-300">
+
                             UI/UX Design
+
                         </h4>
 
                     </div>
 
-                    <div class="p-4 rounded-xl bg-slate-900/50 text-center hover:border hover:border-emerald-500/30 transition">
 
-                        <i class="fas fa-chart-bar text-emerald-400 text-2xl mb-2"></i>
 
-                        <h4 class="text-xs font-bold uppercase text-slate-300">
+                    <div
+                        class="p-4
+                               rounded-xl
+                               bg-slate-900/50
+                               text-center
+                               hover:border
+                               hover:border-emerald-500/30
+                               transition">
+
+                        <i
+                            class="fas fa-chart-bar
+                                   text-emerald-400
+                                   text-2xl
+                                   mb-2">
+                        </i>
+
+                        <h4
+                            class="text-xs
+                                   font-bold
+                                   uppercase
+                                   text-slate-300">
+
                             Data Analytics
+
                         </h4>
 
                     </div>
@@ -491,48 +1290,136 @@
     </section>
 
 
-    <!-- EDUCATION -->
-    <section id="education"
-             class="py-20 px-6 bg-slate-900/30 relative z-10">
+
+    <!-- =====================================================
+         EDUCATION
+    ===================================================== -->
+
+    <section
+        id="education"
+        class="py-20
+               px-6
+               bg-slate-900/30
+               relative
+               z-10">
+
 
         <div class="max-w-5xl mx-auto">
 
-            <div data-aos="fade-up"
-                 class="text-center space-y-3 mb-16">
 
-                <h2 class="text-3xl sm:text-4xl font-extrabold">
+            <div
+                data-aos="fade-up"
+                class="text-center
+                       space-y-3
+                       mb-16">
+
+                <h2
+                    class="text-3xl
+                           sm:text-4xl
+                           font-extrabold">
 
                     Education
-                    <span class="gradient-text">Journey</span>
+                    <span class="gradient-text">
+                        Journey
+                    </span>
 
                 </h2>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-gradient-to-r
+                           from-cyan-400
+                           to-indigo-500
+                           mx-auto
+                           rounded-full">
+                </div>
 
             </div>
 
-            <div class="relative border-l-2 border-slate-800 ml-4 sm:ml-32 space-y-12">
 
-                <div data-aos="fade-up"
-                     class="relative pl-8 sm:pl-10">
 
-                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full gradient-bg ring-4 ring-slate-950"></div>
+            <div
+                class="relative
+                       border-l-2
+                       border-slate-800
+                       ml-4
+                       sm:ml-32
+                       space-y-12">
 
-                    <div class="glass-card p-6 sm:p-8 rounded-2xl hover:border-cyan-500/40 transition">
 
-                        <span class="px-3 py-1 text-xs font-semibold rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <div
+                    data-aos="fade-up"
+                    class="relative
+                           pl-8
+                           sm:pl-10">
+
+
+                    <div
+                        class="absolute
+                               -left-[9px]
+                               top-1.5
+                               w-4
+                               h-4
+                               rounded-full
+                               gradient-bg
+                               ring-4
+                               ring-slate-950">
+                    </div>
+
+
+                    <div
+                        class="glass-card
+                               p-6
+                               sm:p-8
+                               rounded-2xl
+                               hover:border-cyan-500/40
+                               transition">
+
+
+                        <span
+                            class="px-3
+                                   py-1
+                                   text-xs
+                                   font-semibold
+                                   rounded-full
+                                   bg-cyan-500/10
+                                   text-cyan-400
+                                   border
+                                   border-cyan-500/20">
+
                             2023 - Present
+
                         </span>
 
-                        <h3 class="text-xl font-bold mt-3 text-slate-100">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mt-3
+                                   text-slate-100">
+
                             BSc (Hons) in Software Engineering
+
                         </h3>
 
-                        <p class="text-cyan-400 text-sm font-medium">
+
+                        <p
+                            class="text-cyan-400
+                                   text-sm
+                                   font-medium">
+
                             Sri Lanka Technological Campus (SLTC)
+
                         </p>
 
-                        <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+
+                        <p
+                            class="text-slate-400
+                                   text-xs
+                                   mt-3
+                                   leading-relaxed">
 
                             Specializing in software development,
                             software engineering methodologies,
@@ -546,27 +1433,80 @@
 
                 </div>
 
-                <div data-aos="fade-up"
-                     data-aos-delay="100"
-                     class="relative pl-8 sm:pl-10">
 
-                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-slate-950"></div>
 
-                    <div class="glass-card p-6 sm:p-8 rounded-2xl hover:border-indigo-500/40 transition">
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="relative
+                           pl-8
+                           sm:pl-10">
 
-                        <span class="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+
+                    <div
+                        class="absolute
+                               -left-[9px]
+                               top-1.5
+                               w-4
+                               h-4
+                               rounded-full
+                               bg-indigo-500
+                               ring-4
+                               ring-slate-950">
+                    </div>
+
+
+                    <div
+                        class="glass-card
+                               p-6
+                               sm:p-8
+                               rounded-2xl
+                               hover:border-indigo-500/40
+                               transition">
+
+
+                        <span
+                            class="px-3
+                                   py-1
+                                   text-xs
+                                   font-semibold
+                                   rounded-full
+                                   bg-indigo-500/10
+                                   text-indigo-400
+                                   border
+                                   border-indigo-500/20">
+
                             2022
+
                         </span>
 
-                        <h3 class="text-xl font-bold mt-3 text-slate-100">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mt-3
+                                   text-slate-100">
+
                             G.C.E Advanced Level
+
                         </h3>
 
-                        <p class="text-indigo-400 text-sm font-medium">
+
+                        <p
+                            class="text-indigo-400
+                                   text-sm
+                                   font-medium">
+
                             K/MW Pinnawala Central College
+
                         </p>
 
-                        <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+
+                        <p
+                            class="text-slate-400
+                                   text-xs
+                                   mt-3
+                                   leading-relaxed">
 
                             Engineering Technology Stream:
                             Engineering Technology,
@@ -586,112 +1526,266 @@
     </section>
 
 
-    <!-- SKILLS -->
-    <section id="skills" class="py-20 px-6 relative z-10">
+
+    <!-- =====================================================
+         SKILLS
+    ===================================================== -->
+
+    <section
+        id="skills"
+        class="py-20
+               px-6
+               relative
+               z-10">
+
 
         <div class="max-w-6xl mx-auto">
 
-            <div data-aos="fade-up"
-                 class="text-center space-y-3 mb-16">
 
-                <h2 class="text-3xl sm:text-4xl font-extrabold">
+            <div
+                data-aos="fade-up"
+                class="text-center
+                       space-y-3
+                       mb-16">
+
+                <h2
+                    class="text-3xl
+                           sm:text-4xl
+                           font-extrabold">
 
                     Skills &
-                    <span class="gradient-text">Proficiencies</span>
+                    <span class="gradient-text">
+                        Proficiencies
+                    </span>
 
                 </h2>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-gradient-to-r
+                           from-cyan-400
+                           to-indigo-500
+                           mx-auto
+                           rounded-full">
+                </div>
 
             </div>
 
-            <!-- Core Expertise -->
-            <div data-aos="fade-up"
-                 class="glass-card p-8 rounded-3xl mb-12 border border-slate-800">
 
-                <h3 class="text-lg font-bold mb-6 text-cyan-400 flex items-center gap-2">
+
+            <!-- Core Expertise -->
+
+            <div
+                data-aos="fade-up"
+                class="glass-card
+                       p-8
+                       rounded-3xl
+                       mb-12
+                       border
+                       border-slate-800">
+
+
+                <h3
+                    class="text-lg
+                           font-bold
+                           mb-6
+                           text-cyan-400
+                           flex
+                           items-center
+                           gap-2">
 
                     <i class="fas fa-chart-line"></i>
+
                     Core Expertise
 
                 </h3>
 
-                <div class="grid sm:grid-cols-2 gap-6">
+
+
+                <div
+                    class="grid
+                           sm:grid-cols-2
+                           gap-6">
+
+
+                    <!-- Skill 1 -->
 
                     <div>
 
-                        <div class="flex justify-between text-xs font-bold mb-2">
+                        <div
+                            class="flex
+                                   justify-between
+                                   text-xs
+                                   font-bold
+                                   mb-2">
 
-                            <span>Python / Machine Learning & NLP</span>
-                            <span>90%</span>
+                            <span>
+                                Python / Machine Learning & NLP
+                            </span>
+
+                            <span>
+                                90%
+                            </span>
 
                         </div>
 
-                        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
 
-                            <div class="skill-bar gradient-bg h-full rounded-full transition-all duration-1000"
-                                 style="width:0%"
-                                 data-width="90%">
+                        <div
+                            class="w-full
+                                   bg-slate-800
+                                   h-2.5
+                                   rounded-full
+                                   overflow-hidden">
+
+                            <div
+                                class="skill-bar
+                                       gradient-bg
+                                       h-full
+                                       rounded-full
+                                       transition-all
+                                       duration-1000"
+                                style="width:0%"
+                                data-width="90%">
                             </div>
 
                         </div>
 
                     </div>
 
+
+
+                    <!-- Skill 2 -->
+
                     <div>
 
-                        <div class="flex justify-between text-xs font-bold mb-2">
+                        <div
+                            class="flex
+                                   justify-between
+                                   text-xs
+                                   font-bold
+                                   mb-2">
 
-                            <span>React.js & Web Development</span>
-                            <span>85%</span>
+                            <span>
+                                React.js & Web Development
+                            </span>
+
+                            <span>
+                                85%
+                            </span>
 
                         </div>
 
-                        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
 
-                            <div class="skill-bar gradient-bg h-full rounded-full transition-all duration-1000"
-                                 style="width:0%"
-                                 data-width="85%">
+                        <div
+                            class="w-full
+                                   bg-slate-800
+                                   h-2.5
+                                   rounded-full
+                                   overflow-hidden">
+
+                            <div
+                                class="skill-bar
+                                       gradient-bg
+                                       h-full
+                                       rounded-full
+                                       transition-all
+                                       duration-1000"
+                                style="width:0%"
+                                data-width="85%">
                             </div>
 
                         </div>
 
                     </div>
 
+
+
+                    <!-- Skill 3 -->
+
                     <div>
 
-                        <div class="flex justify-between text-xs font-bold mb-2">
+                        <div
+                            class="flex
+                                   justify-between
+                                   text-xs
+                                   font-bold
+                                   mb-2">
 
-                            <span>FastAPI / Flask / Backend APIs</span>
-                            <span>80%</span>
+                            <span>
+                                FastAPI / Flask / Backend APIs
+                            </span>
+
+                            <span>
+                                80%
+                            </span>
 
                         </div>
 
-                        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
 
-                            <div class="skill-bar gradient-bg h-full rounded-full transition-all duration-1000"
-                                 style="width:0%"
-                                 data-width="80%">
+                        <div
+                            class="w-full
+                                   bg-slate-800
+                                   h-2.5
+                                   rounded-full
+                                   overflow-hidden">
+
+                            <div
+                                class="skill-bar
+                                       gradient-bg
+                                       h-full
+                                       rounded-full
+                                       transition-all
+                                       duration-1000"
+                                style="width:0%"
+                                data-width="80%">
                             </div>
 
                         </div>
 
                     </div>
 
+
+
+                    <!-- Skill 4 -->
+
                     <div>
 
-                        <div class="flex justify-between text-xs font-bold mb-2">
+                        <div
+                            class="flex
+                                   justify-between
+                                   text-xs
+                                   font-bold
+                                   mb-2">
 
-                            <span>MLOps (MLflow, Docker, Airflow, DVC)</span>
-                            <span>78%</span>
+                            <span>
+                                MLOps (MLflow, Docker, Airflow, DVC)
+                            </span>
+
+                            <span>
+                                78%
+                            </span>
 
                         </div>
 
-                        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
 
-                            <div class="skill-bar gradient-bg h-full rounded-full transition-all duration-1000"
-                                 style="width:0%"
-                                 data-width="78%">
+                        <div
+                            class="w-full
+                                   bg-slate-800
+                                   h-2.5
+                                   rounded-full
+                                   overflow-hidden">
+
+                            <div
+                                class="skill-bar
+                                       gradient-bg
+                                       h-full
+                                       rounded-full
+                                       transition-all
+                                       duration-1000"
+                                style="width:0%"
+                                data-width="78%">
                             </div>
 
                         </div>
@@ -702,36 +1796,73 @@
 
             </div>
 
+
+
             <!-- Technical Skills -->
-            <h3 class="text-xl font-bold mb-6 text-slate-200 border-l-4 border-cyan-400 pl-3">
+
+            <h3
+                class="text-xl
+                       font-bold
+                       mb-6
+                       text-slate-200
+                       border-l-4
+                       border-cyan-400
+                       pl-3">
+
                 Technical Skills
+
             </h3>
 
-            <div class="grid md:grid-cols-3 gap-6 mb-12">
+
+
+            <div
+                class="grid
+                       md:grid-cols-3
+                       gap-6
+                       mb-12">
+
 
                 <!-- Programming -->
-                <div data-aos="fade-up"
-                     class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition">
 
-                    <div class="text-cyan-400 text-2xl mb-4">
+                <div
+                    data-aos="fade-up"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           hover:border-cyan-500/40
+                           transition">
+
+                    <div
+                        class="text-cyan-400
+                               text-2xl
+                               mb-4">
+
                         <i class="fas fa-code"></i>
+
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4">
+
+                    <h3
+                        class="text-lg
+                               font-bold
+                               mb-4">
+
                         Programming Languages
+
                     </h3>
+
 
                     <div class="flex flex-wrap gap-2">
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Python
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Java
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             SQL
                         </span>
 
@@ -739,38 +1870,58 @@
 
                 </div>
 
-                <!-- Data -->
-                <div data-aos="fade-up"
-                     data-aos-delay="100"
-                     class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition">
 
-                    <div class="text-indigo-400 text-2xl mb-4">
+
+                <!-- Data -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           hover:border-cyan-500/40
+                           transition">
+
+                    <div
+                        class="text-indigo-400
+                               text-2xl
+                               mb-4">
+
                         <i class="fas fa-chart-pie"></i>
+
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4">
+
+                    <h3
+                        class="text-lg
+                               font-bold
+                               mb-4">
+
                         Data Analysis & Viz
+
                     </h3>
+
 
                     <div class="flex flex-wrap gap-2">
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Pandas
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             NumPy
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Excel
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Power BI
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Matplotlib
                         </span>
 
@@ -778,34 +1929,54 @@
 
                 </div>
 
-                <!-- Big Data -->
-                <div data-aos="fade-up"
-                     data-aos-delay="200"
-                     class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition">
 
-                    <div class="text-purple-400 text-2xl mb-4">
+
+                <!-- Big Data -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           hover:border-cyan-500/40
+                           transition">
+
+                    <div
+                        class="text-purple-400
+                               text-2xl
+                               mb-4">
+
                         <i class="fas fa-network-wired"></i>
+
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4">
+
+                    <h3
+                        class="text-lg
+                               font-bold
+                               mb-4">
+
                         Big Data & Data Eng
+
                     </h3>
+
 
                     <div class="flex flex-wrap gap-2">
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             PySpark
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Apache Airflow
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             MLflow
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             DVC
                         </span>
 
@@ -813,38 +1984,58 @@
 
                 </div>
 
-                <!-- Frameworks -->
-                <div data-aos="fade-up"
-                     data-aos-delay="300"
-                     class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition">
 
-                    <div class="text-emerald-400 text-2xl mb-4">
+
+                <!-- Frameworks -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           hover:border-cyan-500/40
+                           transition">
+
+                    <div
+                        class="text-emerald-400
+                               text-2xl
+                               mb-4">
+
                         <i class="fas fa-cubes"></i>
+
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4">
+
+                    <h3
+                        class="text-lg
+                               font-bold
+                               mb-4">
+
                         Frameworks & Web
+
                     </h3>
+
 
                     <div class="flex flex-wrap gap-2">
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             React.js
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             FastAPI
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Flask
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Flutter
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Streamlit
                         </span>
 
@@ -852,30 +2043,50 @@
 
                 </div>
 
-                <!-- Databases -->
-                <div data-aos="fade-up"
-                     data-aos-delay="400"
-                     class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition">
 
-                    <div class="text-amber-400 text-2xl mb-4">
+
+                <!-- Databases -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           hover:border-cyan-500/40
+                           transition">
+
+                    <div
+                        class="text-amber-400
+                               text-2xl
+                               mb-4">
+
                         <i class="fas fa-database"></i>
+
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4">
+
+                    <h3
+                        class="text-lg
+                               font-bold
+                               mb-4">
+
                         Databases
+
                     </h3>
+
 
                     <div class="flex flex-wrap gap-2">
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             MySQL
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Firebase
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             SQLite
                         </span>
 
@@ -883,46 +2094,66 @@
 
                 </div>
 
-                <!-- Tools -->
-                <div data-aos="fade-up"
-                     data-aos-delay="500"
-                     class="glass-card p-6 rounded-2xl hover:border-cyan-500/40 transition">
 
-                    <div class="text-rose-400 text-2xl mb-4">
+
+                <!-- Tools -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           hover:border-cyan-500/40
+                           transition">
+
+                    <div
+                        class="text-rose-400
+                               text-2xl
+                               mb-4">
+
                         <i class="fas fa-tools"></i>
+
                     </div>
 
-                    <h3 class="text-lg font-bold mb-4">
+
+                    <h3
+                        class="text-lg
+                               font-bold
+                               mb-4">
+
                         Tools, Platforms & Version Control
+
                     </h3>
+
 
                     <div class="flex flex-wrap gap-2">
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             VS Code
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Jupyter Notebook
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Google Colab
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Docker
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Git / GitHub
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             DAGsHub
                         </span>
 
-                        <span class="px-3 py-1 bg-slate-800 text-xs rounded-lg text-slate-300 border border-slate-700">
+                        <span class="tech">
                             Jira
                         </span>
 
@@ -932,71 +2163,188 @@
 
             </div>
 
+
+
             <!-- Soft Skills -->
-            <h3 class="text-xl font-bold mb-6 text-slate-200 border-l-4 border-indigo-400 pl-3">
+
+            <h3
+                class="text-xl
+                       font-bold
+                       mb-6
+                       text-slate-200
+                       border-l-4
+                       border-indigo-400
+                       pl-3">
+
                 Soft Skills
+
             </h3>
 
-            <div class="grid sm:grid-cols-3 gap-6">
 
-                <div data-aos="fade-up"
-                     class="glass-card p-6 rounded-2xl text-center border border-slate-800 hover:border-cyan-500/30 transition">
+            <div
+                class="grid
+                       sm:grid-cols-3
+                       gap-6">
 
-                    <div class="w-12 h-12 rounded-full bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl mx-auto mb-3">
+
+                <div
+                    data-aos="fade-up"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           text-center
+                           border
+                           border-slate-800
+                           hover:border-cyan-500/30
+                           transition">
+
+                    <div
+                        class="w-12
+                               h-12
+                               rounded-full
+                               bg-cyan-500/10
+                               text-cyan-400
+                               flex
+                               items-center
+                               justify-center
+                               text-xl
+                               mx-auto
+                               mb-3">
 
                         <i class="fas fa-users"></i>
 
                     </div>
 
-                    <h4 class="font-bold text-slate-100 text-base mb-2">
+
+                    <h4
+                        class="font-bold
+                               text-slate-100
+                               text-base
+                               mb-2">
+
                         Team Collaboration & Leadership
+
                     </h4>
 
-                    <p class="text-xs text-slate-400 leading-relaxed">
+
+                    <p
+                        class="text-xs
+                               text-slate-400
+                               leading-relaxed">
+
                         Works effectively in teams and takes the initiative
                         to achieve project goals smoothly.
+
                     </p>
 
                 </div>
 
-                <div data-aos="fade-up"
-                     data-aos-delay="100"
-                     class="glass-card p-6 rounded-2xl text-center border border-slate-800 hover:border-indigo-500/30 transition">
 
-                    <div class="w-12 h-12 rounded-full bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mx-auto mb-3">
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           text-center
+                           border
+                           border-slate-800
+                           hover:border-indigo-500/30
+                           transition">
+
+                    <div
+                        class="w-12
+                               h-12
+                               rounded-full
+                               bg-indigo-500/10
+                               text-indigo-400
+                               flex
+                               items-center
+                               justify-center
+                               text-xl
+                               mx-auto
+                               mb-3">
 
                         <i class="fas fa-tasks"></i>
 
                     </div>
 
-                    <h4 class="font-bold text-slate-100 text-base mb-2">
+
+                    <h4
+                        class="font-bold
+                               text-slate-100
+                               text-base
+                               mb-2">
+
                         Project Management
+
                     </h4>
 
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Plans, organizes, and completes complex tasks efficiently
-                        to hit all target deadlines.
+
+                    <p
+                        class="text-xs
+                               text-slate-400
+                               leading-relaxed">
+
+                        Plans, organizes, and completes complex tasks
+                        efficiently to hit all target deadlines.
+
                     </p>
 
                 </div>
 
-                <div data-aos="fade-up"
-                     data-aos-delay="200"
-                     class="glass-card p-6 rounded-2xl text-center border border-slate-800 hover:border-purple-500/30 transition">
 
-                    <div class="w-12 h-12 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl mx-auto mb-3">
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    class="glass-card
+                           p-6
+                           rounded-2xl
+                           text-center
+                           border
+                           border-slate-800
+                           hover:border-purple-500/30
+                           transition">
+
+                    <div
+                        class="w-12
+                               h-12
+                               rounded-full
+                               bg-purple-500/10
+                               text-purple-400
+                               flex
+                               items-center
+                               justify-center
+                               text-xl
+                               mx-auto
+                               mb-3">
 
                         <i class="fas fa-lightbulb"></i>
 
                     </div>
 
-                    <h4 class="font-bold text-slate-100 text-base mb-2">
+
+                    <h4
+                        class="font-bold
+                               text-slate-100
+                               text-base
+                               mb-2">
+
                         Learning Agility
+
                     </h4>
 
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Quickly learns new tools, modern frameworks, and
-                        techniques to elevate project outcomes.
+
+                    <p
+                        class="text-xs
+                               text-slate-400
+                               leading-relaxed">
+
+                        Quickly learns new tools, modern frameworks,
+                        and techniques to elevate project outcomes.
+
                     </p>
 
                 </div>
@@ -1008,60 +2356,160 @@
     </section>
 
 
-    <!-- FEATURED PROJECTS -->
-    <section id="projects"
-             class="py-20 px-6 bg-slate-900/30 relative z-10">
+
+    <!-- =====================================================
+         FEATURED PROJECTS
+    ===================================================== -->
+
+    <section
+        id="projects"
+        class="py-20
+               px-6
+               bg-slate-900/30
+               relative
+               z-10">
+
 
         <div class="max-w-6xl mx-auto">
 
-            <div data-aos="fade-up"
-                 class="text-center space-y-3 mb-12">
 
-                <h2 class="text-3xl sm:text-4xl font-extrabold">
+            <!-- Title -->
+
+            <div
+                data-aos="fade-up"
+                class="text-center
+                       space-y-3
+                       mb-12">
+
+                <h2
+                    class="text-3xl
+                           sm:text-4xl
+                           font-extrabold">
 
                     Featured
-                    <span class="gradient-text">Projects</span>
+                    <span class="gradient-text">
+                        Projects
+                    </span>
 
                 </h2>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-gradient-to-r
+                           from-cyan-400
+                           to-indigo-500
+                           mx-auto
+                           rounded-full">
+                </div>
 
             </div>
 
-            <!-- FILTER BUTTONS -->
-            <div data-aos="fade-up"
-                 class="flex flex-wrap justify-center gap-3 mb-12">
 
-                <button class="filter-btn active px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500 text-slate-950 transition"
-                        data-filter="all">
+
+            <!-- =================================================
+                 FILTER BUTTONS
+            ================================================= -->
+
+            <div
+                data-aos="fade-up"
+                class="flex
+                       flex-wrap
+                       justify-center
+                       gap-3
+                       mb-12">
+
+
+                <button
+                    class="filter-btn active
+                           px-5
+                           py-2
+                           rounded-full
+                           text-xs
+                           font-bold
+                           uppercase
+                           tracking-wider
+                           bg-cyan-500
+                           text-slate-950
+                           transition"
+                    data-filter="all">
 
                     All
 
                 </button>
 
-                <button class="filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider glass-card hover:text-cyan-400 transition"
-                        data-filter="ai">
+
+                <button
+                    class="filter-btn
+                           px-5
+                           py-2
+                           rounded-full
+                           text-xs
+                           font-bold
+                           uppercase
+                           tracking-wider
+                           glass-card
+                           hover:text-cyan-400
+                           transition"
+                    data-filter="ai">
 
                     AI / ML / NLP
 
                 </button>
 
-                <button class="filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider glass-card hover:text-cyan-400 transition"
-                        data-filter="mlops">
+
+                <button
+                    class="filter-btn
+                           px-5
+                           py-2
+                           rounded-full
+                           text-xs
+                           font-bold
+                           uppercase
+                           tracking-wider
+                           glass-card
+                           hover:text-cyan-400
+                           transition"
+                    data-filter="mlops">
 
                     MLOps
 
                 </button>
 
-                <button class="filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider glass-card hover:text-cyan-400 transition"
-                        data-filter="web">
+
+                <button
+                    class="filter-btn
+                           px-5
+                           py-2
+                           rounded-full
+                           text-xs
+                           font-bold
+                           uppercase
+                           tracking-wider
+                           glass-card
+                           hover:text-cyan-400
+                           transition"
+                    data-filter="web">
 
                     Web App
 
                 </button>
 
-                <button class="filter-btn px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider glass-card hover:text-cyan-400 transition"
-                        data-filter="mobile">
+
+                <button
+                    class="filter-btn
+                           px-5
+                           py-2
+                           rounded-full
+                           text-xs
+                           font-bold
+                           uppercase
+                           tracking-wider
+                           glass-card
+                           hover:text-cyan-400
+                           transition"
+                    data-filter="mobile">
 
                     Mobile App
 
@@ -1070,26 +2518,71 @@
             </div>
 
 
-            <!-- PROJECT GRID -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- =================================================
+                 PROJECT GRID
+            ================================================= -->
+
+            <div
+                class="grid
+                       md:grid-cols-2
+                       lg:grid-cols-3
+                       gap-8">
 
 
-                <!-- PROJECT 1 -->
-                <div data-aos="fade-up"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="ai">
+
+                <!-- =================================================
+                     PROJECT 1 - DEEPSHIELD
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="ai">
+
 
                     <div class="p-6">
 
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-semibold uppercase">
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-cyan-500/10
+                                       text-cyan-400
+                                       border
+                                       border-cyan-500/20
+                                       font-semibold
+                                       uppercase">
+
                                 Ongoing (2027)
+
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator"
-                               target="_blank"
-                               class="text-slate-400 hover:text-cyan-400">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-slate-400
+                                       hover:text-cyan-400">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1097,11 +2590,24 @@
 
                         </div>
 
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
                             DeepShield
+
                         </h3>
 
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
 
                             Explainable Multimodal Framework for Trust Assessment
                             and Evidence-Based Fake News Detection using text,
@@ -1109,6 +2615,7 @@
                             (RAG), and XAI techniques for Trust Score generation.
 
                         </p>
+
 
                         <div class="flex flex-wrap gap-1.5">
 
@@ -1127,23 +2634,60 @@
                 </div>
 
 
-                <!-- PROJECT 2 -->
-                <div data-aos="fade-up"
-                     data-aos-delay="100"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="mlops">
+
+                <!-- =================================================
+                     PROJECT 2 - CUSTOMER CHURN
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="mlops">
+
 
                     <div class="p-6">
 
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-semibold uppercase">
-                                
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-indigo-500/10
+                                       text-indigo-400
+                                       border
+                                       border-indigo-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                MLOps
+
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator"
-                               target="_blank"
-                               class="text-slate-400 hover:text-cyan-400">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-slate-400
+                                       hover:text-cyan-400">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1151,11 +2695,24 @@
 
                         </div>
 
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
                             Customer Churn Prediction with MLOps
+
                         </h3>
 
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
 
                             Production-ready MLOps pipeline for Telco customer
                             churn prediction. Prepared 7,043 records, tracked
@@ -1163,6 +2720,7 @@
                             achieving 81.97% accuracy.
 
                         </p>
+
 
                         <div class="flex flex-wrap gap-1.5">
 
@@ -1181,23 +2739,60 @@
                 </div>
 
 
-                <!-- PROJECT 3 -->
-                <div data-aos="fade-up"
-                     data-aos-delay="200"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="ai">
+
+                <!-- =================================================
+                     PROJECT 3 - SMS SPAM
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="ai">
+
 
                     <div class="p-6">
 
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-semibold uppercase">
-                               
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-purple-500/10
+                                       text-purple-400
+                                       border
+                                       border-purple-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                NLP / AI
+
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator"
-                               target="_blank"
-                               class="text-slate-400 hover:text-cyan-400">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-slate-400
+                                       hover:text-cyan-400">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1205,17 +2800,32 @@
 
                         </div>
 
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
                             SMS SPAM Detection System
+
                         </h3>
 
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
 
-                            Trained Random Forest & optimized LSTM deep learning
-                            models for sequential text spam classification.
-                            Developed a responsive web UI for real-time predictions.
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
+
+                            Trained Random Forest and optimized LSTM deep
+                            learning models for sequential text spam
+                            classification. Developed a responsive web UI
+                            for real-time predictions.
 
                         </p>
+
 
                         <div class="flex flex-wrap gap-1.5">
 
@@ -1232,23 +2842,60 @@
                 </div>
 
 
-                <!-- PROJECT 4 -->
-                <div data-aos="fade-up"
-                     data-aos-delay="300"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="ai">
+
+                <!-- =================================================
+                     PROJECT 4 - HOSPITAL
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="ai">
+
 
                     <div class="p-6">
 
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold uppercase">
-                                
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-emerald-500/10
+                                       text-emerald-400
+                                       border
+                                       border-emerald-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                Machine Learning
+
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator"
-                               target="_blank"
-                               class="text-slate-400 hover:text-cyan-400">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-slate-400
+                                       hover:text-cyan-400">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1256,17 +2903,32 @@
 
                         </div>
 
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
                             Hospital Appointment No-Show Prediction
+
                         </h3>
 
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
 
-                            Machine learning solution to predict patient appointment
-                            no-shows using healthcare data, feature importance analysis,
-                            EDA, and an interactive Streamlit web app.
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
+
+                            Machine learning solution to predict patient
+                            appointment no-shows using healthcare data,
+                            feature importance analysis, EDA, and an
+                            interactive Streamlit web application.
 
                         </p>
+
 
                         <div class="flex flex-wrap gap-1.5">
 
@@ -1283,23 +2945,60 @@
                 </div>
 
 
-                <!-- PROJECT 5 -->
-                <div data-aos="fade-up"
-                     data-aos-delay="400"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="web">
+
+                <!-- =================================================
+                     PROJECT 5 - MEDICAL STORE
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="web">
+
 
                     <div class="p-6">
 
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 font-semibold uppercase">
-                                
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-rose-500/10
+                                       text-rose-400
+                                       border
+                                       border-rose-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                Web Application
+
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator"
-                               target="_blank"
-                               class="text-slate-400 hover:text-cyan-400">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-slate-400
+                                       hover:text-cyan-400">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1307,17 +3006,31 @@
 
                         </div>
 
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
                             Medical Store Management System
+
                         </h3>
 
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
 
                             Designed reusable React components and intuitive
                             UI/UX for pharmaceutical store management,
                             integrated with backend APIs in an Agile setup.
 
                         </p>
+
 
                         <div class="flex flex-wrap gap-1.5">
 
@@ -1333,23 +3046,60 @@
                 </div>
 
 
-                <!-- PROJECT 6 -->
-                <div data-aos="fade-up"
-                     data-aos-delay="500"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="mobile">
+
+                <!-- =================================================
+                     PROJECT 6 - LANKASMARTMART
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="mobile">
+
 
                     <div class="p-6">
 
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold uppercase">
-                              
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-amber-500/10
+                                       text-amber-400
+                                       border
+                                       border-amber-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                Mobile App
+
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator"
-                               target="_blank"
-                               class="text-slate-400 hover:text-cyan-400">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-slate-400
+                                       hover:text-cyan-400">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1357,17 +3107,32 @@
 
                         </div>
 
-                        <h3 class="text-xl font-bold mb-2 group-hover:text-cyan-400 transition">
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
                             LankaSmartMart Mobile App
+
                         </h3>
 
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
 
-                            Complete Figma UI/UX prototype & Android application
-                            development for smart grocery store management with
-                            real-time database updates and Git workflows.
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
+
+                            Complete Figma UI/UX prototype and Android
+                            application development for smart grocery
+                            store management with real-time database
+                            updates and Git workflows.
 
                         </p>
+
 
                         <div class="flex flex-wrap gap-1.5">
 
@@ -1384,34 +3149,62 @@
                 </div>
 
 
-                <!-- ===================================================== -->
-                <!-- PROJECT 7 - NEW INVENTORY MANAGEMENT SYSTEM -->
-                <!-- ===================================================== -->
 
-                <div data-aos="fade-up"
-                     data-aos-delay="600"
-                     class="project-card glass-card rounded-2xl overflow-hidden group hover:border-cyan-500/50 transition flex flex-col justify-between"
-                     data-category="web">
+                <!-- =================================================
+                     PROJECT 7 - INVENTORY
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="web">
+
 
                     <div class="p-6">
 
-                        <!-- Header -->
-                        <div class="flex justify-between items-start mb-3">
 
-                            <span class="text-[10px] px-2.5 py-1 rounded-full
-                                         bg-cyan-500/10 text-cyan-400
-                                         border border-cyan-500/20
-                                         font-semibold uppercase">
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
 
-                               
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-cyan-500/10
+                                       text-cyan-400
+                                       border
+                                       border-cyan-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                ML Web App
 
                             </span>
 
-                            <a href="https://github.com/cit-23-02-0104-creator/Inventory-management-system"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               title="View Inventory Management System on GitHub"
-                               class="text-slate-400 hover:text-cyan-400 transition">
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator/Inventory-management-system"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="View Inventory Management System"
+                                class="text-slate-400
+                                       hover:text-cyan-400
+                                       transition">
 
                                 <i class="fab fa-github text-lg"></i>
 
@@ -1420,28 +3213,34 @@
                         </div>
 
 
-                        <!-- Project Title -->
-                        <h3 class="text-xl font-bold mb-2
-                                   group-hover:text-cyan-400 transition">
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
 
                             Inventory Management & Stock Prediction System
 
                         </h3>
 
 
-                        <!-- Description -->
-                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
 
-                            Smart Flask-based inventory management system with
-                            product stock monitoring, low-stock and out-of-stock
-                            detection, automated email alerts, sales analytics,
-                            Power BI dashboards, and Machine Learning-based
-                            future stock prediction using Random Forest Regression.
+                            Smart Flask-based inventory management system
+                            with product stock monitoring, low-stock and
+                            out-of-stock detection, automated email alerts,
+                            sales analytics, Power BI dashboards, and
+                            Machine Learning-based future stock prediction
+                            using Random Forest Regression.
 
                         </p>
 
 
-                        <!-- Technologies -->
                         <div class="flex flex-wrap gap-1.5">
 
                             <span class="tech">Python</span>
@@ -1457,51 +3256,34 @@
                         </div>
 
 
-                        <!-- Buttons -->
+                        <!-- GitHub -->
+
                         <div class="flex flex-wrap gap-3 mt-5">
 
-                            <!-- GitHub -->
-                            <a href="https://github.com/cit-23-02-0104-creator/Inventory-management-system"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="inline-flex items-center gap-2
-                                      px-4 py-2 rounded-lg
-                                      bg-slate-800
-                                      border border-slate-700
-                                      text-xs font-semibold
-                                      text-slate-300
-                                      hover:bg-cyan-500
-                                      hover:text-slate-950
-                                      hover:border-cyan-400
-                                      transition">
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator/Inventory-management-system"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex
+                                       items-center
+                                       gap-2
+                                       px-4
+                                       py-2
+                                       rounded-lg
+                                       bg-slate-800
+                                       border
+                                       border-slate-700
+                                       text-xs
+                                       font-semibold
+                                       text-slate-300
+                                       hover:bg-cyan-500
+                                       hover:text-slate-950
+                                       hover:border-cyan-400
+                                       transition">
 
                                 <i class="fab fa-github"></i>
 
                                 GitHub
-
-                            </a>
-
-
-                            <!-- Live Demo -->
-                            <!--
-                            Replace YOUR_PYTHONANYWHERE_URL with
-                            your real deployed Flask URL.
-                            -->
-
-                            <a href="#"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="inline-flex items-center gap-2
-                                      px-4 py-2 rounded-lg
-                                      bg-cyan-500
-                                      text-slate-950
-                                      text-xs font-bold
-                                      hover:bg-cyan-400
-                                      transition">
-
-                                <i class="fas fa-external-link-alt"></i>
-
-                                
 
                             </a>
 
@@ -1511,102 +3293,350 @@
 
                 </div>
 
+
+
+                <!-- =================================================
+                     PROJECT 8 - FRUIT & VEGETABLE DETECTION
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="700"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-cyan-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between"
+                    data-category="ai">
+
+
+                    <div class="p-6">
+
+
+                        <!-- Header -->
+
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+
+                            <span
+                                class="text-[10px]
+                                       px-2.5
+                                       py-1
+                                       rounded-full
+                                       bg-emerald-500/10
+                                       text-emerald-400
+                                       border
+                                       border-emerald-500/20
+                                       font-semibold
+                                       uppercase">
+
+                                AI / Computer Vision
+
+                            </span>
+
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="View Fruit & Vegetable Detection Project"
+                                class="text-slate-400
+                                       hover:text-cyan-400
+                                       transition">
+
+                                <i class="fab fa-github text-lg"></i>
+
+                            </a>
+
+                        </div>
+
+
+
+                        <!-- Title -->
+
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-cyan-400
+                                   transition">
+
+                            AI-Based Fruit & Vegetable Detection Web Application
+
+                        </h3>
+
+
+
+                        <!-- Description -->
+
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
+
+                            AI-powered computer vision web application for
+                            detecting fruits and vegetables from uploaded
+                            images and live camera input. The system identifies
+                            objects and displays detection results with
+                            confidence scores and bounding-box coordinates.
+
+                        </p>
+
+
+
+                        <!-- Features -->
+
+                        <div
+                            class="space-y-1.5
+                                   mb-4
+                                   text-[11px]
+                                   text-slate-400">
+
+
+                            <div class="flex gap-2">
+
+                                <i
+                                    class="fas fa-check
+                                           text-emerald-400
+                                           mt-0.5">
+                                </i>
+
+                                <span>
+                                    Image upload and live camera detection
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex gap-2">
+
+                                <i
+                                    class="fas fa-check
+                                           text-emerald-400
+                                           mt-0.5">
+                                </i>
+
+                                <span>
+                                    Confidence scores and bounding boxes
+                                </span>
+
+                            </div>
+
+
+                            <div class="flex gap-2">
+
+                                <i
+                                    class="fas fa-check
+                                           text-emerald-400
+                                           mt-0.5">
+                                </i>
+
+                                <span>
+                                    REST API-based detection
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Technologies -->
+
+                        <div class="flex flex-wrap gap-1.5">
+
+                            <span class="tech">
+                                Python
+                            </span>
+
+                            <span class="tech">
+                                FastAPI
+                            </span>
+
+                            <span class="tech">
+                                Roboflow
+                            </span>
+
+                            <span class="tech">
+                                Computer Vision
+                            </span>
+
+                            <span class="tech">
+                                HTML5
+                            </span>
+
+                            <span class="tech">
+                                CSS3
+                            </span>
+
+                            <span class="tech">
+                                JavaScript
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- GitHub ONLY -->
+
+                        <div
+                            class="flex
+                                   flex-wrap
+                                   gap-3
+                                   mt-5">
+
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex
+                                       items-center
+                                       gap-2
+                                       px-4
+                                       py-2
+                                       rounded-lg
+                                       bg-slate-800
+                                       border
+                                       border-slate-700
+                                       text-xs
+                                       font-semibold
+                                       text-slate-300
+                                       hover:bg-cyan-500
+                                       hover:text-slate-950
+                                       hover:border-cyan-400
+                                       transition">
+
+                                <i class="fab fa-github"></i>
+
+                                GitHub
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
             </div>
 
         </div>
 
     </section>
 
-    <!-- AI-Based Fruit & Vegetable Detection -->
-<div class="project-card">
-    <div class="project-content">
-        <span class="project-number">04</span>
-
-        <h3>AI-Based Fruit &amp; Vegetable Detection Web Application</h3>
-
-        <p>
-            Developed an AI-powered web application for detecting fruits and
-            vegetables from uploaded images and live camera input. The system
-            uses computer vision to identify objects and provide detection
-            results with confidence scores and bounding-box coordinates.
-        </p>
-
-        <ul class="project-features">
-            <li>Implemented fruit and vegetable detection using an AI computer vision model.</li>
-            <li>Integrated a Roboflow model for object detection.</li>
-            <li>Supported image upload and live camera-based detection.</li>
-            <li>Displayed detected classes, confidence scores, and bounding boxes.</li>
-            <li>Built REST API endpoints for image and camera-frame detection.</li>
-            <li>Designed a responsive and user-friendly web interface.</li>
-            <li>Added loading states and clear detection result displays.</li>
-            <li>Configured HTTPS support and Vercel deployment for web access.</li>
-        </ul>
-
-        <div class="project-tech">
-            <span>Python</span>
-            <span>FastAPI</span>
-            <span>Roboflow</span>
-            <span>Computer Vision</span>
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>Vercel</span>
-        </div>
-
-        <div class="project-links">
-            <a href="YOUR_GITHUB_REPOSITORY_LINK"
-               target="_blank"
-               rel="noopener noreferrer">
-                <i class="fab fa-github"></i>
-                GitHub
-            </a>
-
-            <a href="YOUR_LIVE_DEMO_LINK"
-               target="_blank"
-               rel="noopener noreferrer">
-                <i class="fas fa-external-link-alt"></i>
-                Live Demo
-            </a>
-        </div>
-    </div>
-</div>
 
 
-    <!-- SERVICES -->
-    <section id="services" class="py-20 px-6 relative z-10">
+    <!-- =====================================================
+         SERVICES
+    ===================================================== -->
+
+    <section
+        id="services"
+        class="py-20
+               px-6
+               relative
+               z-10">
+
 
         <div class="max-w-6xl mx-auto">
 
-            <div data-aos="fade-up"
-                 class="text-center space-y-3 mb-16">
 
-                <h2 class="text-3xl sm:text-4xl font-extrabold">
+            <div
+                data-aos="fade-up"
+                class="text-center
+                       space-y-3
+                       mb-16">
+
+                <h2
+                    class="text-3xl
+                           sm:text-4xl
+                           font-extrabold">
 
                     My
-                    <span class="gradient-text">Services</span>
+                    <span class="gradient-text">
+                        Services
+                    </span>
 
                 </h2>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-gradient-to-r
+                           from-cyan-400
+                           to-indigo-500
+                           mx-auto
+                           rounded-full">
+                </div>
 
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <div data-aos="fade-up"
-                     class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
 
-                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-2xl mb-6">
+            <div
+                class="grid
+                       md:grid-cols-2
+                       lg:grid-cols-3
+                       gap-8">
+
+
+                <!-- AI -->
+
+                <div
+                    data-aos="fade-up"
+                    class="glass-card
+                           p-8
+                           rounded-2xl
+                           hover:-translate-y-2
+                           transition
+                           duration-300
+                           border
+                           border-slate-800">
+
+                    <div
+                        class="w-14
+                               h-14
+                               rounded-2xl
+                               bg-cyan-500/10
+                               text-cyan-400
+                               flex
+                               items-center
+                               justify-center
+                               text-2xl
+                               mb-6">
 
                         <i class="fas fa-brain"></i>
 
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mb-3">
+
                         AI & Machine Learning
+
                     </h3>
 
-                    <p class="text-slate-400 text-xs leading-relaxed">
+
+                    <p
+                        class="text-slate-400
+                               text-xs
+                               leading-relaxed">
 
                         Building predictive models, natural language
                         processing solutions, RAG frameworks, and deep
@@ -1617,21 +3647,52 @@
                 </div>
 
 
-                <div data-aos="fade-up"
-                     data-aos-delay="100"
-                     class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
 
-                    <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl mb-6">
+                <!-- MLOps -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    class="glass-card
+                           p-8
+                           rounded-2xl
+                           hover:-translate-y-2
+                           transition
+                           duration-300
+                           border
+                           border-slate-800">
+
+                    <div
+                        class="w-14
+                               h-14
+                               rounded-2xl
+                               bg-indigo-500/10
+                               text-indigo-400
+                               flex
+                               items-center
+                               justify-center
+                               text-2xl
+                               mb-6">
 
                         <i class="fas fa-cogs"></i>
 
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mb-3">
+
                         MLOps Engineering
+
                     </h3>
 
-                    <p class="text-slate-400 text-xs leading-relaxed">
+
+                    <p
+                        class="text-slate-400
+                               text-xs
+                               leading-relaxed">
 
                         Designing end-to-end MLOps pipelines using MLflow,
                         Airflow, DVC, and Docker for reproducible machine
@@ -1642,45 +3703,108 @@
                 </div>
 
 
-                <div data-aos="fade-up"
-                     data-aos-delay="200"
-                     class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
 
-                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mb-6">
+                <!-- Full Stack -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    class="glass-card
+                           p-8
+                           rounded-2xl
+                           hover:-translate-y-2
+                           transition
+                           duration-300
+                           border
+                           border-slate-800">
+
+                    <div
+                        class="w-14
+                               h-14
+                               rounded-2xl
+                               bg-purple-500/10
+                               text-purple-400
+                               flex
+                               items-center
+                               justify-center
+                               text-2xl
+                               mb-6">
 
                         <i class="fas fa-laptop-code"></i>
 
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mb-3">
+
                         Full-Stack Development
+
                     </h3>
 
-                    <p class="text-slate-400 text-xs leading-relaxed">
 
-                        Creating interactive, modern web applications using
-                        React.js, FastAPI, Flask, and scalable REST APIs.
+                    <p
+                        class="text-slate-400
+                               text-xs
+                               leading-relaxed">
+
+                        Creating interactive, modern web applications
+                        using React.js, FastAPI, Flask, and scalable
+                        REST APIs.
 
                     </p>
 
                 </div>
 
 
-                <div data-aos="fade-up"
-                     data-aos-delay="300"
-                     class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
 
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-6">
+                <!-- Data -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    class="glass-card
+                           p-8
+                           rounded-2xl
+                           hover:-translate-y-2
+                           transition
+                           duration-300
+                           border
+                           border-slate-800">
+
+                    <div
+                        class="w-14
+                               h-14
+                               rounded-2xl
+                               bg-emerald-500/10
+                               text-emerald-400
+                               flex
+                               items-center
+                               justify-center
+                               text-2xl
+                               mb-6">
 
                         <i class="fas fa-chart-bar"></i>
 
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mb-3">
+
                         Data Engineering & Analytics
+
                     </h3>
 
-                    <p class="text-slate-400 text-xs leading-relaxed">
+
+                    <p
+                        class="text-slate-400
+                               text-xs
+                               leading-relaxed">
 
                         Exploratory data analysis (EDA), feature engineering,
                         PySpark workflows, and interactive Power BI dashboards.
@@ -1690,48 +3814,112 @@
                 </div>
 
 
-                <div data-aos="fade-up"
-                     data-aos-delay="400"
-                     class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
 
-                    <div class="w-14 h-14 rounded-2xl bg-rose-500/10 text-rose-400 flex items-center justify-center text-2xl mb-6">
+                <!-- UI UX -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                    class="glass-card
+                           p-8
+                           rounded-2xl
+                           hover:-translate-y-2
+                           transition
+                           duration-300
+                           border
+                           border-slate-800">
+
+                    <div
+                        class="w-14
+                               h-14
+                               rounded-2xl
+                               bg-rose-500/10
+                               text-rose-400
+                               flex
+                               items-center
+                               justify-center
+                               text-2xl
+                               mb-6">
 
                         <i class="fas fa-paint-brush"></i>
 
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mb-3">
+
                         UI/UX Design
+
                     </h3>
 
-                    <p class="text-slate-400 text-xs leading-relaxed">
+
+                    <p
+                        class="text-slate-400
+                               text-xs
+                               leading-relaxed">
 
                         Prototyping intuitive user interfaces, user flows,
-                        and interactive mockups with Figma for web & mobile apps.
+                        and interactive mockups with Figma for web &
+                        mobile applications.
 
                     </p>
 
                 </div>
 
 
-                <div data-aos="fade-up"
-                     data-aos-delay="500"
-                     class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition duration-300 border border-slate-800">
 
-                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-6">
+                <!-- Mobile -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    class="glass-card
+                           p-8
+                           rounded-2xl
+                           hover:-translate-y-2
+                           transition
+                           duration-300
+                           border
+                           border-slate-800">
+
+                    <div
+                        class="w-14
+                               h-14
+                               rounded-2xl
+                               bg-amber-500/10
+                               text-amber-400
+                               flex
+                               items-center
+                               justify-center
+                               text-2xl
+                               mb-6">
 
                         <i class="fas fa-mobile-alt"></i>
 
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               mb-3">
+
                         Mobile App Development
+
                     </h3>
 
-                    <p class="text-slate-400 text-xs leading-relaxed">
+
+                    <p
+                        class="text-slate-400
+                               text-xs
+                               leading-relaxed">
 
                         Building Android and Flutter cross-platform
-                        applications integrated with real-time cloud backends.
+                        applications integrated with real-time cloud
+                        backends.
 
                     </p>
 
@@ -1744,36 +3932,81 @@
     </section>
 
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-20 px-6 relative z-10">
+
+    <!-- =====================================================
+         CONTACT
+    ===================================================== -->
+
+    <section
+        id="contact"
+        class="py-20
+               px-6
+               relative
+               z-10">
+
 
         <div class="max-w-6xl mx-auto">
 
-            <div data-aos="fade-up"
-                 class="text-center space-y-3 mb-16">
 
-                <h2 class="text-3xl sm:text-4xl font-extrabold">
+            <div
+                data-aos="fade-up"
+                class="text-center
+                       space-y-3
+                       mb-16">
+
+                <h2
+                    class="text-3xl
+                           sm:text-4xl
+                           font-extrabold">
 
                     Get In
-                    <span class="gradient-text">Touch</span>
+                    <span class="gradient-text">
+                        Touch
+                    </span>
 
                 </h2>
 
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-400 to-indigo-500 mx-auto rounded-full"></div>
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-gradient-to-r
+                           from-cyan-400
+                           to-indigo-500
+                           mx-auto
+                           rounded-full">
+                </div>
 
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
+
+
+            <div
+                class="grid
+                       md:grid-cols-2
+                       gap-12">
+
 
                 <!-- Contact Info -->
-                <div data-aos="fade-right"
-                     class="space-y-6">
 
-                    <h3 class="text-2xl font-bold">
+                <div
+                    data-aos="fade-right"
+                    class="space-y-6">
+
+
+                    <h3
+                        class="text-2xl
+                               font-bold">
+
                         Let's work together!
+
                     </h3>
 
-                    <p class="text-slate-400 text-sm leading-relaxed">
+
+                    <p
+                        class="text-slate-400
+                               text-sm
+                               leading-relaxed">
 
                         I am currently looking for software engineering
                         internship and project opportunities. Feel free
@@ -1782,24 +4015,60 @@
 
                     </p>
 
-                    <div class="space-y-4 pt-4">
 
-                        <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
 
-                            <div class="w-12 h-12 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl">
+                    <div
+                        class="space-y-4
+                               pt-4">
+
+
+                        <!-- Phone -->
+
+                        <div
+                            class="flex
+                                   items-center
+                                   gap-4
+                                   p-4
+                                   glass-card
+                                   rounded-xl">
+
+
+                            <div
+                                class="w-12
+                                       h-12
+                                       rounded-lg
+                                       bg-cyan-500/10
+                                       text-cyan-400
+                                       flex
+                                       items-center
+                                       justify-center
+                                       text-xl">
 
                                 <i class="fas fa-phone-alt"></i>
 
                             </div>
 
+
                             <div>
 
-                                <p class="text-xs text-slate-400 uppercase font-semibold">
+                                <p
+                                    class="text-xs
+                                           text-slate-400
+                                           uppercase
+                                           font-semibold">
+
                                     Phone
+
                                 </p>
 
-                                <p class="text-sm font-bold text-slate-200">
+
+                                <p
+                                    class="text-sm
+                                           font-bold
+                                           text-slate-200">
+
                                     +94 71 624 6625
+
                                 </p>
 
                             </div>
@@ -1807,22 +4076,54 @@
                         </div>
 
 
-                        <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
 
-                            <div class="w-12 h-12 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl">
+                        <!-- Email -->
+
+                        <div
+                            class="flex
+                                   items-center
+                                   gap-4
+                                   p-4
+                                   glass-card
+                                   rounded-xl">
+
+
+                            <div
+                                class="w-12
+                                       h-12
+                                       rounded-lg
+                                       bg-indigo-500/10
+                                       text-indigo-400
+                                       flex
+                                       items-center
+                                       justify-center
+                                       text-xl">
 
                                 <i class="fas fa-envelope"></i>
 
                             </div>
 
+
                             <div>
 
-                                <p class="text-xs text-slate-400 uppercase font-semibold">
+                                <p
+                                    class="text-xs
+                                           text-slate-400
+                                           uppercase
+                                           font-semibold">
+
                                     Email
+
                                 </p>
 
-                                <p class="text-sm font-bold text-slate-200">
+
+                                <p
+                                    class="text-sm
+                                           font-bold
+                                           text-slate-200">
+
                                     kiruusamarakoon@gmail.com
+
                                 </p>
 
                             </div>
@@ -1830,22 +4131,54 @@
                         </div>
 
 
-                        <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
 
-                            <div class="w-12 h-12 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl">
+                        <!-- Location -->
+
+                        <div
+                            class="flex
+                                   items-center
+                                   gap-4
+                                   p-4
+                                   glass-card
+                                   rounded-xl">
+
+
+                            <div
+                                class="w-12
+                                       h-12
+                                       rounded-lg
+                                       bg-purple-500/10
+                                       text-purple-400
+                                       flex
+                                       items-center
+                                       justify-center
+                                       text-xl">
 
                                 <i class="fas fa-map-marker-alt"></i>
 
                             </div>
 
+
                             <div>
 
-                                <p class="text-xs text-slate-400 uppercase font-semibold">
+                                <p
+                                    class="text-xs
+                                           text-slate-400
+                                           uppercase
+                                           font-semibold">
+
                                     Location
+
                                 </p>
 
-                                <p class="text-sm font-bold text-slate-200">
+
+                                <p
+                                    class="text-sm
+                                           font-bold
+                                           text-slate-200">
+
                                     Kegalla, Sri Lanka
+
                                 </p>
 
                             </div>
@@ -1857,57 +4190,144 @@
                 </div>
 
 
+
                 <!-- Contact Form -->
-                <div data-aos="fade-left"
-                     class="glass-card p-8 rounded-3xl border border-slate-800">
 
-                    <form id="contactForm"
-                          class="space-y-4">
+                <div
+                    data-aos="fade-left"
+                    class="glass-card
+                           p-8
+                           rounded-3xl
+                           border
+                           border-slate-800">
+
+
+                    <form
+                        id="contactForm"
+                        class="space-y-4">
+
 
                         <div>
 
-                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-2">
+                            <label
+                                class="block
+                                       text-xs
+                                       font-semibold
+                                       uppercase
+                                       text-slate-400
+                                       mb-2">
+
                                 Your Name
+
                             </label>
 
-                            <input type="text"
-                                   required
-                                   placeholder="John Doe"
-                                   class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+
+                            <input
+                                type="text"
+                                required
+                                placeholder="John Doe"
+                                class="w-full
+                                       px-4
+                                       py-3
+                                       rounded-xl
+                                       bg-slate-900/80
+                                       border
+                                       border-slate-800
+                                       text-slate-200
+                                       text-sm
+                                       focus:outline-none
+                                       focus:border-cyan-400
+                                       transition">
 
                         </div>
 
 
+
                         <div>
 
-                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-2">
+                            <label
+                                class="block
+                                       text-xs
+                                       font-semibold
+                                       uppercase
+                                       text-slate-400
+                                       mb-2">
+
                                 Your Email
+
                             </label>
 
-                            <input type="email"
-                                   required
-                                   placeholder="john@example.com"
-                                   class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition">
+
+                            <input
+                                type="email"
+                                required
+                                placeholder="john@example.com"
+                                class="w-full
+                                       px-4
+                                       py-3
+                                       rounded-xl
+                                       bg-slate-900/80
+                                       border
+                                       border-slate-800
+                                       text-slate-200
+                                       text-sm
+                                       focus:outline-none
+                                       focus:border-cyan-400
+                                       transition">
 
                         </div>
+
 
 
                         <div>
 
-                            <label class="block text-xs font-semibold uppercase text-slate-400 mb-2">
+                            <label
+                                class="block
+                                       text-xs
+                                       font-semibold
+                                       uppercase
+                                       text-slate-400
+                                       mb-2">
+
                                 Message
+
                             </label>
 
-                            <textarea rows="4"
-                                      required
-                                      placeholder="Hi Jayani, I'd like to discuss a project..."
-                                      class="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-200 text-sm focus:outline-none focus:border-cyan-400 transition"></textarea>
+
+                            <textarea
+                                rows="4"
+                                required
+                                placeholder="Hi Jayani, I'd like to discuss a project..."
+                                class="w-full
+                                       px-4
+                                       py-3
+                                       rounded-xl
+                                       bg-slate-900/80
+                                       border
+                                       border-slate-800
+                                       text-slate-200
+                                       text-sm
+                                       focus:outline-none
+                                       focus:border-cyan-400
+                                       transition">
+                            </textarea>
 
                         </div>
 
 
-                        <button type="submit"
-                                class="w-full py-3.5 rounded-xl gradient-bg text-slate-950 font-bold hover:opacity-90 transition shadow-lg shadow-cyan-500/20">
+
+                        <button
+                            type="submit"
+                            class="w-full
+                                   py-3.5
+                                   rounded-xl
+                                   gradient-bg
+                                   text-slate-950
+                                   font-bold
+                                   hover:opacity-90
+                                   transition
+                                   shadow-lg
+                                   shadow-cyan-500/20">
 
                             Send Message
 
@@ -1924,8 +4344,20 @@
     </section>
 
 
-    <!-- FOOTER -->
-    <footer class="py-8 border-t border-slate-800/80 text-center text-xs text-slate-500 relative z-10">
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer
+        class="py-8
+               border-t
+               border-slate-800/80
+               text-center
+               text-xs
+               text-slate-500
+               relative
+               z-10">
 
         <p>
             © 2026 Jayani Samarakoon. All Rights Reserved.
@@ -1934,100 +4366,199 @@
     </footer>
 
 
-    <!-- BACK TO TOP -->
-    <button id="backToTop"
-            class="fixed bottom-6 right-6 p-3.5 rounded-full gradient-bg text-slate-950 shadow-lg hidden hover:scale-110 transition z-50">
+
+    <!-- =====================================================
+         BACK TO TOP
+    ===================================================== -->
+
+    <button
+        id="backToTop"
+        class="fixed
+               bottom-6
+               right-6
+               p-3.5
+               rounded-full
+               gradient-bg
+               text-slate-950
+               shadow-lg
+               hidden
+               hover:scale-110
+               transition
+               z-50">
 
         <i class="fas fa-arrow-up"></i>
 
     </button>
 
 
-    <!-- AOS -->
+
+    <!-- =====================================================
+         AOS
+    ===================================================== -->
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 
 
     <script>
 
-        /* =========================================================
-           TECH BADGE STYLE
-        ========================================================= */
+        /* =====================================================
+           TECH BADGES
+        ===================================================== */
 
-        document.querySelectorAll('.tech').forEach(tag => {
+        document
+            .querySelectorAll('.tech')
+            .forEach(tag => {
 
-            tag.className =
-                "text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700";
-
-        });
-
-
-        /* =========================================================
-           PARTICLE NETWORK
-        ========================================================= */
-
-        const canvas = document.getElementById('particle-canvas');
-
-        if (canvas) {
-
-            const ctx = canvas.getContext('2d');
-
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-
-            window.addEventListener('resize', () => {
-
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
+                tag.className =
+                    "text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700";
 
             });
 
+
+
+        /* =====================================================
+           PARTICLE NETWORK
+        ===================================================== */
+
+        const canvas =
+            document.getElementById('particle-canvas');
+
+
+        if (canvas) {
+
+            const ctx =
+                canvas.getContext('2d');
+
+
+            let width =
+                canvas.width =
+                window.innerWidth;
+
+
+            let height =
+                canvas.height =
+                window.innerHeight;
+
+
+            window.addEventListener(
+                'resize',
+                () => {
+
+                    width =
+                        canvas.width =
+                        window.innerWidth;
+
+                    height =
+                        canvas.height =
+                        window.innerHeight;
+
+                }
+            );
+
+
             const particles = [];
 
-            const particleCount =
-                Math.min(Math.floor(width / 15), 75);
 
-            for (let i = 0; i < particleCount; i++) {
+            const particleCount =
+                Math.min(
+                    Math.floor(width / 15),
+                    75
+                );
+
+
+            for (
+                let i = 0;
+                i < particleCount;
+                i++
+            ) {
 
                 particles.push({
 
-                    x: Math.random() * width,
-                    y: Math.random() * height,
+                    x:
+                        Math.random() *
+                        width,
 
-                    vx: (Math.random() - 0.5) * 0.7,
-                    vy: (Math.random() - 0.5) * 0.7,
+                    y:
+                        Math.random() *
+                        height,
 
-                    radius: Math.random() * 2 + 1
+                    vx:
+                        (Math.random() - 0.5) *
+                        0.7,
+
+                    vy:
+                        (Math.random() - 0.5) *
+                        0.7,
+
+                    radius:
+                        Math.random() *
+                        2 +
+                        1
 
                 });
 
             }
 
+
             function animateParticles() {
 
-                ctx.clearRect(0, 0, width, height);
+                ctx.clearRect(
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
 
                 const isDark =
-                    document.documentElement.classList.contains('dark');
+                    document.documentElement
+                        .classList
+                        .contains('dark');
+
 
                 const pColor =
                     isDark
                         ? 'rgba(6, 182, 212, '
                         : 'rgba(99, 102, 241, ';
 
-                for (let i = 0; i < particles.length; i++) {
 
-                    let p = particles[i];
+                for (
+                    let i = 0;
+                    i < particles.length;
+                    i++
+                ) {
+
+                    let p =
+                        particles[i];
+
 
                     p.x += p.vx;
                     p.y += p.vy;
 
-                    if (p.x < 0 || p.x > width)
+
+                    if (
+                        p.x < 0 ||
+                        p.x > width
+                    ) {
+
                         p.vx *= -1;
 
-                    if (p.y < 0 || p.y > height)
+                    }
+
+
+                    if (
+                        p.y < 0 ||
+                        p.y > height
+                    ) {
+
                         p.vy *= -1;
 
+                    }
+
+
                     ctx.beginPath();
+
 
                     ctx.arc(
                         p.x,
@@ -2037,15 +4568,25 @@
                         Math.PI * 2
                     );
 
+
                     ctx.fillStyle =
-                        pColor + '0.5)';
+                        pColor +
+                        '0.5)';
+
 
                     ctx.fill();
 
 
-                    for (let j = i + 1; j < particles.length; j++) {
 
-                        let p2 = particles[j];
+                    for (
+                        let j = i + 1;
+                        j < particles.length;
+                        j++
+                    ) {
+
+                        let p2 =
+                            particles[j];
+
 
                         let dist =
                             Math.hypot(
@@ -2053,20 +4594,37 @@
                                 p.y - p2.y
                             );
 
+
                         if (dist < 120) {
 
                             ctx.beginPath();
 
-                            ctx.moveTo(p.x, p.y);
 
-                            ctx.lineTo(p2.x, p2.y);
+                            ctx.moveTo(
+                                p.x,
+                                p.y
+                            );
+
+
+                            ctx.lineTo(
+                                p2.x,
+                                p2.y
+                            );
+
 
                             ctx.strokeStyle =
                                 pColor +
-                                (1 - dist / 120) * 0.25 +
+                                (
+                                    1 -
+                                    dist / 120
+                                ) *
+                                0.25 +
                                 ')';
 
-                            ctx.lineWidth = 0.8;
+
+                            ctx.lineWidth =
+                                0.8;
+
 
                             ctx.stroke();
 
@@ -2076,334 +4634,527 @@
 
                 }
 
-                requestAnimationFrame(animateParticles);
+
+                requestAnimationFrame(
+                    animateParticles
+                );
 
             }
+
 
             animateParticles();
 
         }
 
 
-        /* =========================================================
+
+        /* =====================================================
            AOS
-        ========================================================= */
+        ===================================================== */
 
         AOS.init({
 
             duration: 800,
+
             once: true
 
         });
 
 
-        /* =========================================================
+
+        /* =====================================================
            TYPED TEXT
-        ========================================================= */
+        ===================================================== */
 
-        new Typed('#typed-text', {
+        new Typed(
+            '#typed-text',
+            {
 
-            strings: [
+                strings: [
 
-                'Software Developer',
-                'AI & ML Enthusiast',
-                'MLOps Practitioner',
-                'UI/UX Designer'
+                    'Software Developer',
+                    'AI & ML Enthusiast',
+                    'MLOps Practitioner',
+                    'UI/UX Designer'
 
-            ],
+                ],
 
-            typeSpeed: 60,
-            backSpeed: 40,
-            loop: true
+                typeSpeed: 60,
 
-        });
+                backSpeed: 40,
+
+                loop: true
+
+            }
+        );
 
 
-        /* =========================================================
+
+        /* =====================================================
            DARK / LIGHT MODE
-        ========================================================= */
+        ===================================================== */
 
         const themeToggle =
-            document.getElementById('themeToggle');
+            document.getElementById(
+                'themeToggle'
+            );
+
 
         const themeIcon =
-            document.getElementById('themeIcon');
+            document.getElementById(
+                'themeIcon'
+            );
+
 
         const html =
             document.documentElement;
 
-        themeToggle.addEventListener('click', () => {
 
-            if (html.classList.contains('dark')) {
+        themeToggle.addEventListener(
+            'click',
+            () => {
 
-                html.classList.remove('dark');
-                html.classList.add('light');
+                if (
+                    html.classList.contains(
+                        'dark'
+                    )
+                ) {
 
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-
-            } else {
-
-                html.classList.remove('light');
-                html.classList.add('dark');
-
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-
-            }
-
-        });
-
-
-        /* =========================================================
-           MOBILE MENU
-        ========================================================= */
-
-        const mobileMenuBtn =
-            document.getElementById('mobileMenuBtn');
-
-        const mobileMenu =
-            document.getElementById('mobileMenu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
-
-        });
-
-
-        document.querySelectorAll('.mobile-link')
-            .forEach(link => {
-
-                link.addEventListener('click', () => {
-
-                    mobileMenu.classList.add('hidden');
-
-                });
-
-            });
-
-
-        /* =========================================================
-           PROJECT FILTER
-        ========================================================= */
-
-        const filterBtns =
-            document.querySelectorAll('.filter-btn');
-
-        const projectCards =
-            document.querySelectorAll('.project-card');
-
-
-        filterBtns.forEach(btn => {
-
-            btn.addEventListener('click', () => {
-
-                filterBtns.forEach(b => {
-
-                    b.classList.remove(
-                        'active',
-                        'bg-cyan-500',
-                        'text-slate-950'
+                    html.classList.remove(
+                        'dark'
                     );
 
-                    b.classList.add('glass-card');
+                    html.classList.add(
+                        'light'
+                    );
 
-                });
+
+                    themeIcon.classList.remove(
+                        'fa-sun'
+                    );
+
+                    themeIcon.classList.add(
+                        'fa-moon'
+                    );
+
+                }
+
+                else {
+
+                    html.classList.remove(
+                        'light'
+                    );
+
+                    html.classList.add(
+                        'dark'
+                    );
 
 
-                btn.classList.add(
-                    'active',
-                    'bg-cyan-500',
-                    'text-slate-950'
+                    themeIcon.classList.remove(
+                        'fa-moon'
+                    );
+
+                    themeIcon.classList.add(
+                        'fa-sun'
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        const mobileMenuBtn =
+            document.getElementById(
+                'mobileMenuBtn'
+            );
+
+
+        const mobileMenu =
+            document.getElementById(
+                'mobileMenu'
+            );
+
+
+        mobileMenuBtn.addEventListener(
+            'click',
+            () => {
+
+                mobileMenu.classList.toggle(
+                    'hidden'
                 );
 
-                btn.classList.remove('glass-card');
+                mobileMenu.classList.toggle(
+                    'flex'
+                );
+
+            }
+        );
 
 
-                const filter =
-                    btn.getAttribute('data-filter');
+        document
+            .querySelectorAll(
+                '.mobile-link'
+            )
+            .forEach(link => {
 
+                link.addEventListener(
+                    'click',
+                    () => {
 
-                projectCards.forEach(card => {
+                        mobileMenu.classList.add(
+                            'hidden'
+                        );
 
-                    if (
-                        filter === 'all' ||
-                        card.getAttribute('data-category') === filter
-                    ) {
-
-                        card.style.display = 'flex';
-
-                    } else {
-
-                        card.style.display = 'none';
+                        mobileMenu.classList.remove(
+                            'flex'
+                        );
 
                     }
-
-                });
+                );
 
             });
 
-        });
 
 
-        /* =========================================================
+        /* =====================================================
+           PROJECT FILTER
+        ===================================================== */
+
+        const filterBtns =
+            document.querySelectorAll(
+                '.filter-btn'
+            );
+
+
+        const projectCards =
+            document.querySelectorAll(
+                '.project-card'
+            );
+
+
+        filterBtns.forEach(
+            btn => {
+
+                btn.addEventListener(
+                    'click',
+                    () => {
+
+
+                        /* Remove active */
+
+                        filterBtns.forEach(
+                            b => {
+
+                                b.classList.remove(
+                                    'active',
+                                    'bg-cyan-500',
+                                    'text-slate-950'
+                                );
+
+                                b.classList.add(
+                                    'glass-card'
+                                );
+
+                            }
+                        );
+
+
+                        /* Add active */
+
+                        btn.classList.add(
+                            'active',
+                            'bg-cyan-500',
+                            'text-slate-950'
+                        );
+
+
+                        btn.classList.remove(
+                            'glass-card'
+                        );
+
+
+                        const filter =
+                            btn.getAttribute(
+                                'data-filter'
+                            );
+
+
+                        /* Filter projects */
+
+                        projectCards.forEach(
+                            card => {
+
+                                if (
+                                    filter === 'all' ||
+                                    card.getAttribute(
+                                        'data-category'
+                                    ) === filter
+                                ) {
+
+                                    card.style.display =
+                                        'flex';
+
+                                }
+
+                                else {
+
+                                    card.style.display =
+                                        'none';
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
            COUNTER
-        ========================================================= */
+        ===================================================== */
 
         const counters =
-            document.querySelectorAll('.counter');
+            document.querySelectorAll(
+                '.counter'
+            );
+
 
         let animated = false;
 
 
-        window.addEventListener('scroll', () => {
+        window.addEventListener(
+            'scroll',
+            () => {
 
-            const scrollPos =
-                window.scrollY + window.innerHeight;
 
-
-            if (counters.length > 0) {
-
-                const targetPos =
-                    counters[0].offsetTop;
+                const scrollPos =
+                    window.scrollY +
+                    window.innerHeight;
 
 
                 if (
-                    scrollPos > targetPos &&
-                    !animated
+                    counters.length > 0
                 ) {
 
-                    counters.forEach(counter => {
 
-                        const target =
-                            +counter.getAttribute('data-target');
-
-                        let count = 0;
-
-                        const speed =
-                            target / 30;
+                    const targetPos =
+                        counters[0].offsetTop;
 
 
-                        const updateCount = () => {
+                    if (
+                        scrollPos >
+                        targetPos &&
+                        !animated
+                    ) {
 
-                            count += speed;
 
-                            if (count < target) {
+                        counters.forEach(
+                            counter => {
 
-                                counter.innerText =
-                                    Math.ceil(count) + "+";
 
-                                setTimeout(
-                                    updateCount,
-                                    40
-                                );
+                                const target =
+                                    +counter.getAttribute(
+                                        'data-target'
+                                    );
 
-                            } else {
 
-                                counter.innerText =
-                                    target + "+";
+                                let count = 0;
+
+
+                                const speed =
+                                    target / 30;
+
+
+                                const updateCount =
+                                    () => {
+
+
+                                        count += speed;
+
+
+                                        if (
+                                            count <
+                                            target
+                                        ) {
+
+
+                                            counter.innerText =
+                                                Math.ceil(
+                                                    count
+                                                ) +
+                                                "+";
+
+
+                                            setTimeout(
+                                                updateCount,
+                                                40
+                                            );
+
+                                        }
+
+                                        else {
+
+                                            counter.innerText =
+                                                target +
+                                                "+";
+
+                                        }
+
+                                    };
+
+
+                                updateCount();
 
                             }
+                        );
 
-                        };
 
-                        updateCount();
+                        animated = true;
+
+                    }
+
+                }
+
+
+
+                /* Back To Top */
+
+                const backToTop =
+                    document.getElementById(
+                        'backToTop'
+                    );
+
+
+                if (
+                    window.scrollY >
+                    400
+                ) {
+
+                    backToTop.classList.remove(
+                        'hidden'
+                    );
+
+                }
+
+                else {
+
+                    backToTop.classList.add(
+                        'hidden'
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           SKILL BARS
+        ===================================================== */
+
+        window.addEventListener(
+            'scroll',
+            () => {
+
+
+                const skillBars =
+                    document.querySelectorAll(
+                        '.skill-bar'
+                    );
+
+
+                skillBars.forEach(
+                    bar => {
+
+
+                        const rect =
+                            bar.getBoundingClientRect();
+
+
+                        if (
+                            rect.top <
+                            window.innerHeight
+                        ) {
+
+                            bar.style.width =
+                                bar.getAttribute(
+                                    'data-width'
+                                );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           BACK TO TOP
+        ===================================================== */
+
+        document
+            .getElementById(
+                'backToTop'
+            )
+            .addEventListener(
+                'click',
+                () => {
+
+                    window.scrollTo({
+
+                        top: 0,
+
+                        behavior: 'smooth'
 
                     });
 
-                    animated = true;
-
                 }
-
-            }
-
-
-            /* Back To Top */
-
-            const backToTop =
-                document.getElementById('backToTop');
+            );
 
 
-            if (window.scrollY > 400) {
 
-                backToTop.classList.remove('hidden');
-
-            } else {
-
-                backToTop.classList.add('hidden');
-
-            }
-
-        });
-
-
-        /* =========================================================
-           SKILL BARS
-        ========================================================= */
-
-        window.addEventListener('scroll', () => {
-
-            const skillBars =
-                document.querySelectorAll('.skill-bar');
-
-
-            skillBars.forEach(bar => {
-
-                const rect =
-                    bar.getBoundingClientRect();
-
-
-                if (rect.top < window.innerHeight) {
-
-                    bar.style.width =
-                        bar.getAttribute('data-width');
-
-                }
-
-            });
-
-        });
-
-
-        /* =========================================================
-           BACK TO TOP
-        ========================================================= */
-
-        document
-            .getElementById('backToTop')
-            .addEventListener('click', () => {
-
-                window.scrollTo({
-
-                    top: 0,
-                    behavior: 'smooth'
-
-                });
-
-            });
-
-
-        /* =========================================================
+        /* =====================================================
            CONTACT FORM
-        ========================================================= */
+        ===================================================== */
 
         document
-            .getElementById('contactForm')
-            .addEventListener('submit', (e) => {
+            .getElementById(
+                'contactForm'
+            )
+            .addEventListener(
+                'submit',
+                (e) => {
 
-                e.preventDefault();
+                    e.preventDefault();
 
-                alert(
-                    'Thank you, Jayani will get back to you soon!'
-                );
 
-                e.target.reset();
+                    alert(
+                        'Thank you! Jayani will get back to you soon.'
+                    );
 
-            });
+
+                    e.target.reset();
+
+                }
+            );
 
     </script>
 
 </body>
+
 </html>
