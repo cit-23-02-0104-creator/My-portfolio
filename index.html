@@ -174,7 +174,211 @@
             transform: translateY(-5px);
         }
 
-    </style>
+    
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #171f32;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+
+        /* Glassmorphism card styles */
+        .glass-card {
+            background: rgba(14, 19, 31, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.25);
+            transform: translateY(-4px);
+        }
+
+        /* Gradient Text Helper */
+        .text-gradient {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #7f00ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animated DP Border Ring */
+        .dp-ring-gradient {
+            background: linear-gradient(45deg, #00f2fe, #7f00ff, #00ffcc, #4facfe);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Typing cursor dynamic blinking */
+        .cursor-blink::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+            color: #00f2fe;
+            font-weight: bold;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .tilt-container {
+            perspective: 1000px;
+        }
+
+        /* Custom Animated Cursor */
+        .custom-cursor-dot,
+        .custom-cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .custom-cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #00f2fe;
+            box-shadow: 0 0 10px 2px rgba(0, 242, 254, 0.8);
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+        }
+        .custom-cursor-ring {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(0, 242, 254, 0.5);
+            transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+        .custom-cursor-dot.cursor-active {
+            width: 14px;
+            height: 14px;
+            background: #7f00ff;
+        }
+        .custom-cursor-ring.cursor-active {
+            width: 60px;
+            height: 60px;
+            border-color: rgba(127, 0, 255, 0.7);
+            background: rgba(127, 0, 255, 0.08);
+        }
+        @media (pointer: coarse) {
+            .custom-cursor-dot, .custom-cursor-ring { display: none; }
+        }
+    
+
+/* =========================================================
+   FIRST PORTFOLIO STYLE ADAPTER
+   Content and functionality preserved from the second file.
+   ========================================================= */
+
+body {
+    background-color: #020617 !important;
+    color: #e2e8f0 !important;
+}
+
+.bg-slate-950 { background-color: #020617 !important; }
+.bg-slate-900 { background-color: #0f172a !important; }
+.bg-slate-800 { background-color: #1e293b !important; }
+.bg-slate-700 { background-color: #334155 !important; }
+
+.text-cyan-400,
+.text-cyan-300 { color: #06b6d4 !important; }
+
+.text-indigo-400,
+.text-indigo-300 { color: #6366f1 !important; }
+
+.text-purple-400,
+.text-purple-300 { color: #a855f7 !important; }
+
+.border-cyan-500\/40,
+.border-cyan-500\/30 {
+    border-color: rgba(6, 182, 212, 0.40) !important;
+}
+
+.border-indigo-500\/40,
+.border-indigo-500\/30 {
+    border-color: rgba(99, 102, 241, 0.40) !important;
+}
+
+.border-purple-500\/40,
+.border-purple-500\/30 {
+    border-color: rgba(168, 85, 247, 0.40) !important;
+}
+
+.hover\:text-cyan-400:hover { color: #06b6d4 !important; }
+.hover\:text-indigo-400:hover { color: #6366f1 !important; }
+.hover\:text-purple-400:hover { color: #a855f7 !important; }
+
+.glass-card {
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.glass-card:hover {
+    border-color: rgba(6,182,212,0.40) !important;
+    box-shadow: 0 10px 30px -10px rgba(6,182,212,0.20);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg,#06b6d4,#6366f1) !important;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg,#06b6d4,#6366f1,#a855f7) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.bg-grid-pattern {
+    background-size: 40px 40px !important;
+    background-image:
+        linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px),
+        linear-gradient(to bottom,rgba(255,255,255,0.04) 1px,transparent 1px) !important;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #06b6d4;
+}
+
+::selection {
+    background: #06b6d4;
+    color: #fff;
+}
+
+</style>
 
 </head>
 
@@ -3045,6 +3249,254 @@
 
                 </div>
 
+
+
+
+                <!-- =================================================
+                     PROJECT 7 - CARDIOAI
+                ================================================= -->
+
+                <div
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                    class="project-card
+                           glass-card
+                           rounded-2xl
+                           overflow-hidden
+                           group
+                           hover:border-red-500/50
+                           transition
+                           flex
+                           flex-col
+                           justify-between
+                           relative"
+                    data-category="ai">
+
+                    <!-- Featured Glow -->
+                    <div
+                        class="absolute
+                               -top-20
+                               -right-20
+                               w-40
+                               h-40
+                               bg-red-500/10
+                               rounded-full
+                               blur-3xl
+                               group-hover:bg-red-500/20
+                               transition">
+                    </div>
+
+                    <div class="p-6 relative z-10">
+
+                        <!-- Project Header -->
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-start
+                                   mb-3">
+
+                            <div class="flex flex-wrap gap-2">
+
+                                <span
+                                    class="text-[10px]
+                                           px-2.5
+                                           py-1
+                                           rounded-full
+                                           bg-red-500/10
+                                           text-red-400
+                                           border
+                                           border-red-500/20
+                                           font-semibold
+                                           uppercase">
+                                    AI / ML
+                                </span>
+
+                                <span
+                                    class="text-[10px]
+                                           px-2.5
+                                           py-1
+                                           rounded-full
+                                           bg-emerald-500/10
+                                           text-emerald-400
+                                           border
+                                           border-emerald-500/20
+                                           font-semibold
+                                           uppercase">
+                                    Live
+                                </span>
+
+                            </div>
+
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator/CardioAI-Heart-Attack-Risk-Prediction-System"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="View CardioAI on GitHub"
+                                class="text-slate-400
+                                       hover:text-red-400
+                                       hover:scale-110
+                                       transition">
+
+                                <i class="fab fa-github text-lg"></i>
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- Project Title -->
+                        <h3
+                            class="text-xl
+                                   font-bold
+                                   mb-2
+                                   group-hover:text-red-400
+                                   transition">
+
+                            🫀 CardioAI — Heart Attack Risk Prediction
+
+                        </h3>
+
+
+                        <!-- Description -->
+                        <p
+                            class="text-xs
+                                   text-slate-400
+                                   mb-4
+                                   leading-relaxed">
+
+                            AI-powered cardiovascular risk prediction system
+                            built with Machine Learning and Streamlit.
+                            CardioAI analyzes health-related inputs and
+                            generates an educational heart-attack risk
+                            prediction using a trained classification model.
+
+                        </p>
+
+
+                        <!-- Highlights -->
+                        <div
+                            class="space-y-2
+                                   mb-5
+                                   text-[11px]
+                                   text-slate-400">
+
+                            <div class="flex items-center gap-2">
+
+                                <i class="fas fa-brain text-red-400"></i>
+
+                                <span>
+                                    Machine Learning Classification
+                                </span>
+
+                            </div>
+
+                            <div class="flex items-center gap-2">
+
+                                <i class="fas fa-chart-line text-red-400"></i>
+
+                                <span>
+                                    Model Evaluation & Performance Analysis
+                                </span>
+
+                            </div>
+
+                            <div class="flex items-center gap-2">
+
+                                <i class="fas fa-globe text-red-400"></i>
+
+                                <span>
+                                    Interactive Streamlit Web Application
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Technologies -->
+                        <div
+                            class="flex
+                                   flex-wrap
+                                   gap-1.5
+                                   mb-5">
+
+                            <span class="tech">Python</span>
+                            <span class="tech">Scikit-learn</span>
+                            <span class="tech">Pandas</span>
+                            <span class="tech">NumPy</span>
+                            <span class="tech">Streamlit</span>
+                            <span class="tech">Joblib</span>
+                            <span class="tech">XGBoost</span>
+
+                        </div>
+
+
+                        <!-- Action Buttons -->
+                        <div
+                            class="grid
+                                   grid-cols-2
+                                   gap-3
+                                   pt-2">
+
+                            <!-- GitHub -->
+                            <a
+                                href="https://github.com/cit-23-02-0104-creator/CardioAI-Heart-Attack-Risk-Prediction-System"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="px-4
+                                       py-2.5
+                                       rounded-xl
+                                       border
+                                       border-slate-700
+                                       bg-slate-900/60
+                                       text-slate-300
+                                       text-xs
+                                       font-bold
+                                       text-center
+                                       hover:border-cyan-400
+                                       hover:text-cyan-400
+                                       hover:bg-cyan-500/10
+                                       transition
+                                       duration-300">
+
+                                <i class="fab fa-github mr-1"></i>
+                                GitHub
+
+                            </a>
+
+
+                            <!-- Live Demo -->
+                            <a
+                                href="https://cardioai-heart-attack-risk-prediction-system-bwlxudsu5botmwk5e.streamlit.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="px-4
+                                       py-2.5
+                                       rounded-xl
+                                       bg-gradient-to-r
+                                       from-red-500
+                                       to-rose-600
+                                       text-white
+                                       text-xs
+                                       font-bold
+                                       text-center
+                                       shadow-lg
+                                       shadow-red-500/20
+                                       hover:scale-105
+                                       hover:shadow-red-500/40
+                                       transition
+                                       duration-300">
+
+                                <i class="fas fa-rocket mr-1"></i>
+                                Live Demo
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
                 <!-- =================================================
